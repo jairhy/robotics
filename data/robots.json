@@ -1,0 +1,416 @@
+[
+  {
+    "id": "cartesiano",
+    "nome": "Robô Cartesiano (Gantry)",
+    "slug": "cartesiano",
+    "imagem": "images/cartesiano.jpg",
+    "conceito": "Também chamados de robôs pórtico (Gantry), possuem cadeia cinemática linear PPP (três juntas prismáticas ortogonais) que se movem ao longo dos eixos X, Y e Z.",
+    "funcionamento": "Cada eixo é acionado por servomotores acoplados a fusos ou correias, deslocando um cabeçote sobre trilhos rígidos apoiados. As equações cinemáticas são triviais, com acoplamento 1:1 entre variável de junta e coordenada.",
+    "cinematica": "PPP (Prismática-Prismática-Prismática). Envelope de trabalho em formato de paralelepípedo retangular.",
+    "envelope": "Paralelepípedo regular, permitindo aproveitamento total e intuitivo da área.",
+    "caracteristicas": {
+      "cargaUtil": "Muito Alta (até dezenas de toneladas)",
+      "gdl": "3 (PPP)",
+      "precisao": "± 0,01 mm a ± 0,05 mm",
+      "velocidade": "Média a Baixa (< 1,5 m/s)",
+      "faixa": "Cursos lineares customizáveis, até vários metros"
+    },
+    "vantagens": [
+      "Rigidez mecânica homogênea",
+      "Erro de deflexão desprezível sob altas cargas",
+      "Aproveitamento total do volume de trabalho",
+      "Cinemática simples e barata"
+    ],
+    "limitacoes": [
+      "Envelope restrito ao pórtico",
+      "Baixa flexibilidade angular",
+      "Ocupa área grande de fábrica"
+    ],
+    "aplicacoes": [
+      "Corte a laser/plasma de grandes chapas",
+      "Paletização de paletes duplos ou triplos",
+      "Alimentação aérea de injetoras",
+      "Impressão 3D industrial de grande porte"
+    ],
+    "iot": "Integra-se via OPC UA e MQTT a CLPs (Siemens, Rockwell), sensores de posição/torque, supervisórios SCADA/HMI, MES (rastreabilidade de lote) e ERP (planejamento de produção).",
+    "fabricantes": [
+      {
+        "nome": "Festo",
+        "modelo": "EXCM Pórtico Linear 2D/3D",
+        "descricao": "Pórtico compacto para pick-and-place e dispensação.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Festo_logo.svg/320px-Festo_logo.svg.png"
+      },
+      {
+        "nome": "Bosch Rexroth",
+        "modelo": "EasyHandling Linear Modules",
+        "descricao": "Módulos lineares configuráveis para pórticos customizados.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Bosch-Rexroth-Logo.svg/320px-Bosch-Rexroth-Logo.svg.png"
+      },
+      {
+        "nome": "Güdel",
+        "modelo": "FP-4 Gantry Pesado",
+        "descricao": "Pórticos pesados para automotivo e movimentação industrial.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/G%C3%BCdel_Group_Logo.svg/320px-G%C3%BCdel_Group_Logo.svg.png"
+      }
+    ],
+    "tags": [
+      "alta-carga",
+      "alta-precisao",
+      "paletizacao"
+    ]
+  },
+  {
+    "id": "scara",
+    "nome": "Robô SCARA",
+    "slug": "scara",
+    "imagem": "images/scara.jpg",
+    "conceito": "SCARA = Selective Compliance Assembly Robot Arm. Topologia RRP com duas rotativas paralelas no plano horizontal e uma prismática vertical.",
+    "funcionamento": "As duas juntas rotativas coplanares posicionam o efetuador em X-Y, e a junta prismática desloca a ferramenta em Z. Alta rigidez vertical e conformidade elástica no plano horizontal.",
+    "cinematica": "RRP / RRR-P. Envelope cilíndrico oco (formato de rim).",
+    "envelope": "Formato de rim (kidney-shaped), cobrindo área anular ao redor da base.",
+    "caracteristicas": {
+      "cargaUtil": "0,5 kg a 20 kg (máx 50 kg)",
+      "gdl": "4 (RRP + rotação)",
+      "precisao": "± 0,01 mm a ± 0,03 mm no plano X-Y",
+      "velocidade": "Alta a Muito Alta",
+      "faixa": "Alcance típico 300–1200 mm"
+    },
+    "vantagens": [
+      "Ciclos extremamente rápidos",
+      "Conformidade seletiva absorve desalinhamentos",
+      "Alta rigidez em Z",
+      "Excelente custo-benefício"
+    ],
+    "limitacoes": [
+      "Restrito basicamente a operações planares",
+      "Envelope limitado",
+      "Não substitui um 6-DoF em orientações complexas"
+    ],
+    "aplicacoes": [
+      "Montagem de componentes eletrônicos",
+      "Parafusamento automatizado",
+      "Dosagem de fluidos e adesivos",
+      "Pick-and-place farmacêutico/cosmético"
+    ],
+    "iot": "Comunicação nativa EtherCAT/Profinet com CLPs, integração com sistemas de visão, supervisórios SCADA e MES via OPC UA para OEE em tempo real.",
+    "fabricantes": [
+      {
+        "nome": "Epson Robotics",
+        "modelo": "G6-551S",
+        "descricao": "SCARA de alta performance série G6.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Epson_logo.svg/320px-Epson_logo.svg.png"
+      },
+      {
+        "nome": "Omron Automation",
+        "modelo": "i4-550L",
+        "descricao": "SCARA de próxima geração série i4H.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/OMRON_Logo.svg/320px-OMRON_Logo.svg.png"
+      },
+      {
+        "nome": "Stäubli",
+        "modelo": "TS2-60",
+        "descricao": "SCARA industrial de alta precisão série TS2.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/St%C3%A4ubli_Logo.svg/320px-St%C3%A4ubli_Logo.svg.png"
+      }
+    ],
+    "tags": [
+      "alta-velocidade",
+      "alta-precisao",
+      "montagem"
+    ]
+  },
+  {
+    "id": "articulado",
+    "nome": "Robô Articulado (Antropomórfico)",
+    "slug": "articulado",
+    "imagem": "images/articulado.jpg",
+    "conceito": "Cadeia aberta com 6 juntas rotativas (RRRRRR) que mimetiza tronco-braço-antebraço-pulso humano. É a morfologia mais versátil da indústria.",
+    "funcionamento": "Os três primeiros eixos posicionam o efetuador no espaço; os três últimos formam o pulso esférico responsável pela orientação (yaw, pitch, roll). Utiliza desacoplamento de Pieper para a cinemática inversa.",
+    "cinematica": "6-DoF articulado (RRRRRR). Sujeito a singularidades de base, cotovelo e pulso.",
+    "envelope": "Volume aproximadamente esférico complexo, com regiões de singularidade.",
+    "caracteristicas": {
+      "cargaUtil": "3 kg a mais de 2.300 kg",
+      "gdl": "6",
+      "precisao": "± 0,03 mm a ± 0,1 mm",
+      "velocidade": "Alta (velocidades angulares dinâmicas)",
+      "faixa": "500 mm a 4.500 mm de alcance"
+    },
+    "vantagens": [
+      "Máxima versatilidade morfológica",
+      "Ampla faixa de payload",
+      "Orientação total do efetuador"
+    ],
+    "limitacoes": [
+      "Cinemática complexa e singularidades",
+      "Custo mais elevado",
+      "Requer enclausuramento"
+    ],
+    "aplicacoes": [
+      "Soldagem por pontos e a arco (MIG/TIG)",
+      "Pintura industrial",
+      "Manipulação de moldes pesados",
+      "Paletização complexa",
+      "Usinagem robótica"
+    ],
+    "iot": "Padrão em Indústria 4.0: OPC UA, MQTT, Profinet, EtherNet/IP para CLPs, integração direta com MES, SCADA, ERP e digital twins em nuvem.",
+    "fabricantes": [
+      {
+        "nome": "FANUC",
+        "modelo": "M-20iB/25",
+        "descricao": "Média carga, alta versatilidade.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Fanuc_logo.svg/320px-Fanuc_logo.svg.png"
+      },
+      {
+        "nome": "KUKA",
+        "modelo": "KR CYBERTECH",
+        "descricao": "Braço antropomórfico de alta dinâmica.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1f/KUKA_Logo.svg/320px-KUKA_Logo.svg.png"
+      },
+      {
+        "nome": "ABB Robotics",
+        "modelo": "IRB 2600",
+        "descricao": "Manipulador industrial robusto.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/ABB_logo.svg/320px-ABB_logo.svg.png"
+      }
+    ],
+    "tags": [
+      "alta-velocidade",
+      "alta-carga",
+      "soldagem",
+      "pintura",
+      "paletizacao"
+    ]
+  },
+  {
+    "id": "cilindrico",
+    "nome": "Robô Cilíndrico",
+    "slug": "cilindrico",
+    "imagem": "images/cilindrico.jpg",
+    "conceito": "Configuração RPP: uma junta rotativa na base + duas prismáticas (elevação vertical e extensão radial). Envelope em forma de cilindro.",
+    "funcionamento": "A coluna central rotaciona em torno do eixo vertical; um carro sobe/desce em Z; uma haste estende-se radialmente. Coluna absorve compressão diretamente para a base.",
+    "cinematica": "RPP (Revoluta-Prismática-Prismática).",
+    "envelope": "Cilíndrico, com limitações de acessibilidade lateral.",
+    "caracteristicas": {
+      "cargaUtil": "Média a Alta",
+      "gdl": "3",
+      "precisao": "± 0,05 mm a ± 0,1 mm",
+      "velocidade": "Média",
+      "faixa": "Concêntrica ao eixo principal"
+    },
+    "vantagens": [
+      "Excelente rigidez torcional",
+      "Coordenadas intuitivas",
+      "Ideal para salas limpas"
+    ],
+    "limitacoes": [
+      "Não desvia de obstáculos entre coluna e alvo",
+      "Acesso lateral limitado"
+    ],
+    "aplicacoes": [
+      "Transferência de wafers de silício em cleanrooms",
+      "Carga/descarga de tornos e fresadoras CNC",
+      "Revestimento por imersão"
+    ],
+    "iot": "Integração com CLPs de linha (Mitsubishi, Siemens), sensores de posição, supervisórios SCADA e MES para rastreabilidade de wafers/lotes.",
+    "fabricantes": [
+      {
+        "nome": "IAI America",
+        "modelo": "EleCylinder ERC3",
+        "descricao": "Atuadores cilíndricos e lineares integrados.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/IAI_Industries_Ltd_logo.svg/320px-IAI_Industries_Ltd_logo.svg.png"
+      },
+      {
+        "nome": "Yamaha Robotics",
+        "modelo": "Série ERCD",
+        "descricao": "Módulos cilíndricos coordenados de alta repetibilidade.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Yamaha_logo.svg/320px-Yamaha_logo.svg.png"
+      },
+      {
+        "nome": "Shibaura Machine",
+        "modelo": "Cylindrical Custom Systems",
+        "descricao": "Sistemas customizados para movimentação concentrada.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Toshiba_logo.svg/320px-Toshiba_logo.svg.png"
+      }
+    ],
+    "tags": [
+      "alta-precisao",
+      "montagem"
+    ]
+  },
+  {
+    "id": "delta",
+    "nome": "Robô Delta (Paralelo)",
+    "slug": "delta",
+    "imagem": "images/delta.jpg",
+    "conceito": "Cadeia cinemática paralela fechada. Três ou quatro braços articulados conectam base fixa superior a uma plataforma móvel inferior.",
+    "funcionamento": "Servos pesados ficam estáticos na base superior; paralelogramos leves em fibra de carbono restringem a plataforma a translação pura em X, Y, Z. Massa móvel mínima → acelerações acima de 10G.",
+    "cinematica": "Paralela 3-DoF (translação) ou 4-DoF (com rotação).",
+    "envelope": "Volume aproximadamente hemisférico invertido abaixo da base.",
+    "caracteristicas": {
+      "cargaUtil": "0,5 kg a 3 kg (máx 10 kg)",
+      "gdl": "3 a 4",
+      "precisao": "± 0,02 mm a ± 0,05 mm",
+      "velocidade": "Extrema (>150 picks/min, >10G)",
+      "faixa": "300–1600 mm de diâmetro"
+    },
+    "vantagens": [
+      "Acelerações colossais",
+      "Inércia móvel mínima",
+      "Altíssima cadência"
+    ],
+    "limitacoes": [
+      "Payload baixo",
+      "Volume de trabalho limitado",
+      "Cinemática de calibração complexa"
+    ],
+    "aplicacoes": [
+      "Pick-and-place de alta velocidade",
+      "Encartuchamento farmacêutico",
+      "Triagem de alimentos com visão artificial",
+      "Montagem de microeletrônica"
+    ],
+    "iot": "Sincronismo via EtherCAT com esteiras (line tracking), visão artificial embarcada, MES para OEE e ERP para pedidos.",
+    "fabricantes": [
+      {
+        "nome": "ABB Robotics",
+        "modelo": "IRB 360 FlexPicker",
+        "descricao": "Pioneiro e padrão de mercado.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/ABB_logo.svg/320px-ABB_logo.svg.png"
+      },
+      {
+        "nome": "FANUC",
+        "modelo": "Série M-1iA",
+        "descricao": "Delta de alta velocidade e precisão.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Fanuc_logo.svg/320px-Fanuc_logo.svg.png"
+      },
+      {
+        "nome": "Codian Robotics",
+        "modelo": "D4-1200",
+        "descricao": "Especialista em cadeia fechada paralela.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Placeholder_logo.svg/320px-Placeholder_logo.svg.png"
+      }
+    ],
+    "tags": [
+      "alta-velocidade",
+      "alta-precisao",
+      "montagem"
+    ]
+  },
+  {
+    "id": "polar",
+    "nome": "Robô Polar (Esférico)",
+    "slug": "polar",
+    "imagem": "images/esferico.jpg",
+    "conceito": "Cinemática RRP baseada em coordenadas polares esféricas. Duas rotações + extensão prismática telescópica.",
+    "funcionamento": "Rotação azimutal na base, inclinação (pitch) e extensão radial telescópica. Envelope é uma seção esférica.",
+    "cinematica": "RRP esférica. Base histórica do Unimate.",
+    "envelope": "Segmento esférico.",
+    "caracteristicas": {
+      "cargaUtil": "Alta (aplicações pesadas de fundição)",
+      "gdl": "3",
+      "precisao": "± 0,1 mm a ± 0,2 mm em máxima extensão",
+      "velocidade": "Média a Baixa",
+      "faixa": "Variável, conforme haste telescópica"
+    },
+    "vantagens": [
+      "Alta carga com braço retraído",
+      "Base histórica robusta",
+      "Bom para ambientes severos"
+    ],
+    "limitacoes": [
+      "Deflexão em máxima extensão",
+      "Substituído por 6-DoF em quase todas as tarefas",
+      "Repetibilidade cai com extensão"
+    ],
+    "aplicacoes": [
+      "Manuseio de panelas de metal fundido",
+      "Alimentação de fornos de forjaria",
+      "Posicionamento balístico/aeroespacial"
+    ],
+    "iot": "Comunicação com CLPs de célula, sensores térmicos, supervisórios SCADA em plantas siderúrgicas e integração com MES para rastreabilidade de fundição.",
+    "fabricantes": [
+      {
+        "nome": "Unimate (Legado)",
+        "modelo": "Unimate 2000",
+        "descricao": "Base conceitual histórica.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Unimate_logo_placeholder.svg/320px-Unimate_logo_placeholder.svg.png"
+      },
+      {
+        "nome": "Prab",
+        "modelo": "E-Series",
+        "descricao": "Manipuladores de coluna de alta carga.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Placeholder_logo.svg/320px-Placeholder_logo.svg.png"
+      },
+      {
+        "nome": "Comau",
+        "modelo": "Smart5 NJ Foundry",
+        "descricao": "Manipuladores pesados para células de fundição.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Comau_logo.svg/320px-Comau_logo.svg.png"
+      }
+    ],
+    "tags": [
+      "alta-carga"
+    ]
+  },
+  {
+    "id": "cobot",
+    "nome": "Robô Colaborativo (Cobot)",
+    "slug": "cobot",
+    "imagem": "images/cobot.jpg",
+    "conceito": "Cobots são robôs projetados para operar em espaço de trabalho compartilhado com humanos, sem enclausuramento, obedecendo à ISO 10218 e ISO/TS 15066.",
+    "funcionamento": "Configurações antropomórficas de 6 ou 7 DoF, com sensores de torque em cada junta, encoders duplos, superfícies arredondadas e cabos internos. O controlador executa dinâmica inversa em tempo real e interrompe o movimento em < 5 ms em caso de colisão.",
+    "cinematica": "Articulada 6-DoF ou 7-DoF (redundância cinemática para desvio de cotovelo).",
+    "envelope": "Esférico complexo com zonas seguras monitoradas.",
+    "caracteristicas": {
+      "cargaUtil": "3 kg a 25 kg (máx atual 35 kg)",
+      "gdl": "6 ou 7",
+      "precisao": "± 0,02 mm a ± 0,05 mm",
+      "velocidade": "≤ 1,0 m/s em modo PFL",
+      "faixa": "500–1800 mm"
+    },
+    "vantagens": [
+      "Trabalha ao lado de humanos",
+      "ROI de 6 a 14 meses",
+      "Direct Teaching sem código",
+      "Sem custo de enclausuramento",
+      "Remanejamento dinâmico de linha"
+    ],
+    "limitacoes": [
+      "Velocidade reduzida em modo colaborativo",
+      "Payload limitado",
+      "Ainda depende de análise de risco por aplicação"
+    ],
+    "aplicacoes": [
+      "Montagem colaborativa",
+      "Lixamento e polimento com controle de pressão",
+      "Inspeção com visão artificial",
+      "Paletização flexível de caixas leves"
+    ],
+    "iot": "Nativos em Indústria 4.0/5.0: MQTT, OPC UA, REST APIs; integram-se a CLPs, sensores de segurança (LiDAR, cortinas de luz), SCADA, MES e ERP em nuvem, além de digital twins.",
+    "fabricantes": [
+      {
+        "nome": "Universal Robots",
+        "modelo": "UR10e",
+        "descricao": "12,5 kg de payload, alcance 1300 mm, sensores de força nas juntas.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Universal_Robots_logo.svg/320px-Universal_Robots_logo.svg.png"
+      },
+      {
+        "nome": "FANUC",
+        "modelo": "CRX-10iA",
+        "descricao": "10 kg de payload, programação por direct teaching, durabilidade industrial.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Fanuc_logo.svg/320px-Fanuc_logo.svg.png"
+      },
+      {
+        "nome": "ABB Robotics",
+        "modelo": "CRB 15000 GoFa",
+        "descricao": "5 kg de payload, alcance 950 mm, interface simplificada.",
+        "imagem": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/81/ABB_logo.svg/320px-ABB_logo.svg.png"
+      }
+    ],
+    "tags": [
+      "colaborativo",
+      "alta-precisao",
+      "montagem"
+    ]
+  }
+]

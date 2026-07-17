@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Detalhes técnicos individuais de cada tipo de robô industrial: conceito, cinemática, aplicações e fabricantes."/>
+  <title>Detalhes do Robô — Robótica 4.0</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="logo"><span class="logo-mark">R4</span> Robótica 4.0</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#robos">Robôs</a></li>
+        <li><a href="compare.html">Comparação</a></li>
+        <li><a href="sensores.html">Sensores IoT</a></li>
+        <li><a href="about.html">Sobre</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button class="icone-btn" id="toggle-tema">🌙</button>
+      <button class="icone-btn hamburguer" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main id="robo-detalhe"><!-- conteúdo injetado por js/robot-detail.js --></main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">© <span id="ano"></span> Robótica 4.0 · Conteúdo baseado no relatório técnico de Jair Hyan Fernandes da Silva.</div>
+  </div>
+</footer>
+
+<button class="voltar-topo" id="voltar-topo">↑</button>
+<div class="modal" id="modal-imagem"><button class="modal-fechar">✕</button><img src="" alt=""/></div>
+
+<script>document.getElementById("ano").textContent = new Date().getFullYear();</script>
+<script src="js/script.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/robot-detail.js"></script>
+</body>
+</html>

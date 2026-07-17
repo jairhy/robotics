@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="Portal técnico e educativo sobre Robótica Industrial, IoT e Indústria 4.0. Sete morfologias robóticas, fabricantes e integração com CLPs, SCADA, MES e ERP."/>
+<title>Robótica Industrial 4.0 — Portal Técnico e Educativo</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/animations.css"/>
+<link rel="stylesheet" href="css/responsive.css"/>
+<style>
+.grid-robos{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem;margin-top:1.5rem}
+.robo-card{background:var(--card-bg,#fff);border:1px solid rgba(0,0,0,.08);border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.06);transition:transform .25s ease,box-shadow .25s ease;display:flex;flex-direction:column}
+.robo-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px rgba(0,0,0,.12)}
+.robo-img{aspect-ratio:4/3;overflow:hidden;background:#f2f2f2}
+.robo-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.robo-card:hover .robo-img img{transform:scale(1.05)}
+.robo-body{padding:1rem 1.1rem 1.2rem;display:flex;flex-direction:column;gap:.5rem}
+.robo-body h3{margin:0 0 .25rem;font-size:1.15rem}
+.robo-meta{font-size:.88rem;line-height:1.45;color:var(--text-muted,#555)}
+.robo-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem}
+.robo-tag{font-size:.72rem;padding:.2rem .55rem;border-radius:999px;background:rgba(0,120,255,.1);color:#0060cc;text-transform:capitalize}
+.robo-card.oculto{display:none}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="logo"><span class="logo-mark">R4</span> Robótica 4.0</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#robos">Robôs</a></li>
+        <li><a href="compare.html">Comparação</a></li>
+        <li><a href="sensores.html">Sensores IoT</a></li>
+        <li><a href="about.html">Sobre</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button class="icone-btn" id="toggle-tema" title="Alternar tema">🌙</button>
+      <button class="icone-btn hamburguer" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="anim-fade-up">
+      <span class="badge">● Indústria 4.0 · IoT · Automação</span>
+      <h1>Robótica Industrial para a era da manufatura conectada</h1>
+      <p>Catálogo técnico completo das sete morfologias robóticas — do braço cartesiano ao cobot colaborativo — com cinemática, aplicações, fabricantes de referência e integração com CLPs, SCADA, MES e ERP.</p>
+      <div class="hero-acoes">
+        <a href="#robos" class="btn btn-primario">Explorar robôs →</a>
+        <a href="compare.html" class="btn btn-secundario">Ver comparação</a>
+      </div>
+    </div>
+    <div class="hero-visual anim-fade-in">
+      <img src="images/industrialRobo.jpg" alt="Braço robótico industrial em operação"/>
+    </div>
+  </div>
+</section>
+
+<main>
+<section class="secao">
+  <div class="container">
+    <div class="secao-titulo"><small>Fundamentos</small><h2>Os pilares da manufatura digital</h2></div>
+    <div class="conceitos">
+      <article class="conceito-card reveal"><div class="conceito-icon">🌐</div><h3>Internet das Coisas (IoT)</h3><p>Rede de sensores, atuadores e dispositivos conectados que trocam dados em tempo real via protocolos como MQTT e OPC UA, formando a espinha dorsal informacional da fábrica.</p></article>
+      <article class="conceito-card reveal"><div class="conceito-icon">🤖</div><h3>Robótica Industrial</h3><p>Manipuladores programáveis com cinemática direta e inversa (Denavit-Hartenberg), capazes de operar com repetibilidade submilimétrica e integrar-se a células produtivas complexas.</p></article>
+      <article class="conceito-card reveal"><div class="conceito-icon">⚙️</div><h3>Automação Industrial</h3><p>Combinação de CLPs, servos, sensores e supervisórios que executa processos com mínima intervenção humana, otimizando custo, qualidade e segurança.</p></article>
+      <article class="conceito-card reveal"><div class="conceito-icon">🔗</div><h3>Robótica × IoT</h3><p>Robôs conectados publicam torque, velocidade e status em nuvem, permitindo manutenção preditiva, digital twins e adaptação dinâmica ao pedido do ERP.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="secao secao-alt" id="robos">
+  <div class="container">
+    <div class="secao-titulo"><small>Catálogo</small><h2>Os 7 tipos de robôs industriais</h2></div>
+
+    <div class="ferramentas">
+      <div class="busca"><input type="search" id="busca-robo" placeholder="Pesquisar: cartesiano, SCARA, delta, cobot..."/></div>
+      <div class="filtros" role="tablist" aria-label="Filtros">
+        <button class="chip ativo" data-filtro="todos">Todos</button>
+        <button class="chip" data-filtro="alta-velocidade">Alta velocidade</button>
+        <button class="chip" data-filtro="alta-precisao">Alta precisão</button>
+        <button class="chip" data-filtro="alta-carga">Alta carga</button>
+        <button class="chip" data-filtro="soldagem">Soldagem</button>
+        <button class="chip" data-filtro="montagem">Montagem</button>
+        <button class="chip" data-filtro="pintura">Pintura</button>
+        <button class="chip" data-filtro="paletizacao">Paletização</button>
+        <button class="chip" data-filtro="colaborativo">Colaborativo</button>
+      </div>
+    </div>
+
+    <div class="grid-robos" id="grid-robos">
+
+      <article class="robo-card reveal" data-tags="alta-precisao montagem" data-nome="robô cartesiano">
+        <div class="robo-img"><img src="images/cartesiano.jpg" alt="Robô Cartesiano"/></div>
+        <div class="robo-body">
+          <h3>Robô Cartesiano</h3>
+          <p class="robo-meta">Movimenta-se em três eixos lineares perpendiculares (X, Y, Z). Alta precisão em áreas de trabalho retangulares — ideal para pick-and-place, CNC e impressão 3D industrial.</p>
+          <div class="robo-tags"><span class="robo-tag">alta precisão</span><span class="robo-tag">montagem</span></div>
+        </div>
+      </article>
+
+      <article class="robo-card reveal" data-tags="alta-velocidade montagem alta-precisao" data-nome="robô scara">
+        <div class="robo-img"><img src="images/scara.jpg" alt="Robô SCARA"/></div>
+        <div class="robo-body">
+          <h3>Robô SCARA</h3>
+          <p class="robo-meta">Selective Compliance Assembly Robot Arm — dois eixos rotacionais horizontais e um linear vertical. Rápido e rígido, dominante em montagem eletrônica e inserção de componentes.</p>
+          <div class="robo-tags"><span class="robo-tag">alta velocidade</span><span class="robo-tag">montagem</span><span class="robo-tag">alta precisão</span></div>
+        </div>
+      </article>
+
+      <article class="robo-card reveal" data-tags="alta-velocidade paletizacao" data-nome="robô delta paralelo">
+        <div class="robo-img"><img src="images/delta.jpg" alt="Robô Delta"/></div>
+        <div class="robo-body">
+          <h3>Robô Delta (Paralelo)</h3>
+          <p class="robo-meta">Cinemática paralela com três braços em paralelogramo suspensos. Extremamente rápido e leve — referência em pick-and-place de alimentos, farmacêuticos e embalagens.</p>
+          <div class="robo-tags"><span class="robo-tag">alta velocidade</span><span class="robo-tag">paletização</span></div>
+        </div>
+      </article>
+
+      <article class="robo-card reveal" data-tags="alta-carga soldagem" data-nome="robô cilíndrico">
+        <div class="robo-img"><img src="images/cilindrico.jpg" alt="Robô Cilíndrico"/></div>
+        <div class="robo-body">
+          <h3>Robô Cilíndrico</h3>
+          <p class="robo-meta">Uma junta rotacional na base e duas prismáticas — envelope de trabalho cilíndrico. Aplicado em soldagem por pontos, manipulação de peças e operações de máquinas-ferramenta.</p>
+          <div class="robo-tags"><span class="robo-tag">alta carga</span><span class="robo-tag">soldagem</span></div>
+        </div>
+      </article>
+
+      <article class="robo-card reveal" data-tags="pintura soldagem" data-nome="robô esférico polar">
+        <div class="robo-img"><img src="images/esferico.jpg" alt="Robô Esférico"/></div>
+        <div class="robo-body">
+          <h3>Robô Esférico (Polar)</h3>
+          <p class="robo-meta">Duas juntas rotacionais e uma prismática formam um envelope esférico. Historicamente usado em fundição, solda a arco e manuseio de peças em alta temperatura.</p>
+          <div class="robo-tags"><span class="robo-tag">pintura</span><span class="robo-tag">soldagem</span></div>
+        </div>
+      </article>
+
+      <article class="robo-card reveal" data-tags="soldagem pintura alta-carga paletizacao" data-nome="robô articulado antropomórfico">
+        <div class="robo-img"><img src="images/articulado.jpg" alt="Robô Articulado"/></div>
+        <div class="robo-body">
+          <h3>Robô Articulado (Antropomórfico)</h3>
+          <p class="robo-meta">Seis eixos rotacionais que imitam o braço humano. Máxima versatilidade — soldagem MIG/TIG, pintura, paletização e integração em células flexíveis.</p>
+          <div class="robo-tags"><span class="robo-tag">soldagem</span><span class="robo-tag">pintura</span><span class="robo-tag">alta carga</span><span class="robo-tag">paletização</span></div>
+        </div>
+      </article>
+
+      <article class="robo-card reveal" data-tags="colaborativo montagem" data-nome="cobot colaborativo">
+        <div class="robo-img"><img src="images/cobot.jpg" alt="Cobot Colaborativo"/></div>
+        <div class="robo-body">
+          <h3>Cobot (Colaborativo)</h3>
+          <p class="robo-meta">Robô articulado leve com sensores de força e limites de velocidade que permitem operação lado a lado com humanos sem gaiolas de segurança. Ideal para PMEs e linhas flexíveis.</p>
+          <div class="robo-tags"><span class="robo-tag">colaborativo</span><span class="robo-tag">montagem</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="ano"></span> Robótica 4.0 — Portal Técnico e Educativo</p>
+  </div>
+</footer>
+
+<div class="modal" id="modal" aria-hidden="true">
+  <button class="modal-fechar" aria-label="Fechar">✕</button>
+  <img src="" alt=""/>
+</div>
+
+<script>document.getElementById("ano").textContent = new Date().getFullYear();</script>
+<script src="js/script.js"></script>
+<script src="js/menu.js"></script>
+<script>
+// Busca + filtros (substitui cards.js/search.js pois os cards já estão no HTML)
+(function(){
+  const busca = document.getElementById('busca-robo');
+  const chips = document.querySelectorAll('.chip');
+  const cards = document.querySelectorAll('.robo-card');
+  let filtro = 'todos';
+  function aplicar(){
+    const q = (busca?.value || '').toLowerCase().trim();
+    cards.forEach(c=>{
+      const nome = (c.getAttribute('data-nome')||'').toLowerCase();
+      const tags = (c.getAttribute('data-tags')||'').toLowerCase();
+      const okFiltro = filtro==='todos' || tags.split(/\s+/).includes(filtro);
+      const okBusca = !q || nome.includes(q) || tags.includes(q);
+      c.classList.toggle('oculto', !(okFiltro && okBusca));
+    });
+  }
+  chips.forEach(ch=>ch.addEventListener('click',()=>{
+    chips.forEach(x=>x.classList.remove('ativo'));
+    ch.classList.add('ativo');
+    filtro = ch.getAttribute('data-filtro');
+    aplicar();
+  }));
+  busca?.addEventListener('input', aplicar);
+})();
+</script>
+</body>
+</html>

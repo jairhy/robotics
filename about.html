@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="Sobre o portal Robótica 4.0 — objetivo, Indústria 4.0, automação industrial, IoT e robótica."/>
+  <title>Sobre — Robótica 4.0</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/animations.css"/>
+  <link rel="stylesheet" href="css/responsive.css"/>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="logo"><span class="logo-mark">R4</span> Robótica 4.0</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#robos">Robôs</a></li>
+        <li><a href="compare.html">Comparação</a></li>
+        <li><a href="sensores.html">Sensores IoT</a></li>
+        <li><a href="about.html">Sobre</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button class="icone-btn" id="toggle-tema">🌙</button>
+      <button class="icone-btn hamburguer" aria-label="Menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="robo-header">
+  <div class="container">
+    <h1>Sobre o Portal</h1>
+    <p>Um catálogo técnico-educativo sobre robótica industrial, desenvolvido a partir do relatório de pesquisa avançada em Engenharia de Automação & Robótica.</p>
+  </div>
+</section>
+
+<main class="secao">
+  <div class="container" style="max-width:900px">
+    <div class="painel reveal">
+      <h3>🎯 Objetivo</h3>
+      <p>Reunir, em uma só plataforma, o conhecimento necessário para estudantes, professores, profissionais de automação e empresas compreenderem as sete morfologias robóticas industriais e sua integração no ecossistema da Indústria 4.0 / 5.0.</p>
+    </div>
+    <div class="painel reveal">
+      <h3>🏭 Indústria 4.0</h3>
+      <p>A quarta revolução industrial conecta máquinas, produtos e pessoas através de sistemas ciber-físicos, IoT industrial (IIoT), computação em nuvem e inteligência artificial, viabilizando fábricas autônomas, adaptativas e altamente eficientes.</p>
+    </div>
+    <div class="painel reveal">
+      <h3>⚙️ Automação Industrial</h3>
+      <p>Combinação de CLPs, servos, sensores, HMIs e supervisórios que executa processos com mínima intervenção humana. Sua evolução migrou da lógica fixa dos relés eletromecânicos para redes deterministas em tempo real como EtherCAT, Profinet e TSN.</p>
+    </div>
+    <div class="painel reveal">
+      <h3>🌐 Internet das Coisas (IoT)</h3>
+      <p>Sensores, atuadores e dispositivos embarcados publicam dados via MQTT/OPC UA para plataformas em nuvem, alimentando manutenção preditiva, digital twins e analytics de OEE em tempo real.</p>
+    </div>
+    <div class="painel reveal">
+      <h3>🤖 Robótica Industrial</h3>
+      <p>Desde o Unimate de 1960 até os cobots redundantes de 7 DoF, a robótica industrial evoluiu de máquinas de força bruta enclausuradas para agentes colaborativos que amplificam a capacidade humana no chão de fábrica.</p>
+    </div>
+    <div class="painel reveal">
+      <h3>📚 Fonte</h3>
+      <p>Todo o conteúdo técnico é baseado no <em>Documento de Pesquisa Acadêmica e de Mercado — Morfologia, Cinemática e Aplicações Avançadas na Robótica Industrial e Colaborativa</em>, de <strong>Jair Hyan Fernandes da Silva</strong>, com foco em Indústria 4.0, ISO/TS 15066 e análise de viabilidade técnica.</p>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">© <span id="ano"></span> Robótica 4.0</div>
+  </div>
+</footer>
+
+<button class="voltar-topo" id="voltar-topo">↑</button>
+<div class="modal" id="modal-imagem"><button class="modal-fechar">✕</button><img src="" alt=""/></div>
+
+<script>document.getElementById("ano").textContent = new Date().getFullYear();</script>
+<script src="js/script.js"></script>
+<script src="js/menu.js"></script>
+</body>
+</html>

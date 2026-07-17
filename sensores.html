@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="Catálogo técnico de 10 sensores para IoT e Automação Industrial: DHT22, DS18B20, LDR, HC-SR04, PIR, indutivo, MQ-135, YF-S201, ACS712 e RFID MFRC522, com simuladores interativos e exemplos de código Arduino."/>
+<title>Catálogo de Sensores IoT & Indústria 4.0 — Robótica 4.0</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/animations.css"/>
+<link rel="stylesheet" href="css/responsive.css"/>
+<link rel="stylesheet" href="css/sensores.css"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primaria: '#1e6fd9',
+          ciano: '#06b6d4',
+        }
+      }
+    }
+  }
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="logo"><span class="logo-mark">R4</span> Robótica 4.0</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#robos">Robôs</a></li>
+        <li><a href="compare.html">Comparação</a></li>
+        <li><a href="sensores.html" class="ativo">Sensores IoT</a></li>
+        <li><a href="about.html">Sobre</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button class="icone-btn" id="toggle-tema" title="Alternar tema">🌙</button>
+      <button class="icone-btn hamburguer" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero sensores-header">
+  <div class="container" style="grid-template-columns:1fr;text-align:center;display:block">
+    <div class="anim-fade-up" style="max-width:760px;margin:0 auto">
+      <span class="badge">● Sensoriamento · Arduino · IoT Industrial</span>
+      <h1>Catálogo de Sensores IoT & Indústria 4.0</h1>
+      <p style="margin:0 auto">O papel do sensoriamento é traduzir grandezas físicas do mundo real — temperatura, distância, presença, gases, fluxo, corrente — em dados digitais que alimentam o controle de processos e a manufatura conectada.</p>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ CONCEITO: MALHA FECHADA ============ -->
+<section class="secao">
+  <div class="container">
+    <div class="secao-titulo"><small>Fundamentos</small><h2>O ciclo de controle em malha fechada</h2></div>
+    <div class="ciclo">
+      <div class="ciclo-etapa reveal"><div class="ciclo-icone">📡</div><h4>Sensor</h4><p>Aquisição da grandeza física e conversão em sinal elétrico.</p></div>
+      <div class="ciclo-seta">→</div>
+      <div class="ciclo-etapa reveal"><div class="ciclo-icone">🧠</div><h4>Controlador</h4><p>Processa o sinal, compara com o setpoint e decide a ação.</p></div>
+      <div class="ciclo-seta">→</div>
+      <div class="ciclo-etapa reveal"><div class="ciclo-icone">⚡</div><h4>Atuador</h4><p>Executa a ação física — abre válvula, liga motor, aciona relé.</p></div>
+    </div>
+    <p class="text-center" style="text-align:center;max-width:70ch;margin:1rem auto 0">Sem protocolos confiáveis — Modbus, 4-20 mA, MQTT, LoRaWAN — os dados de sensores ficam ilhados, inviabilizando o monitoramento centralizado da planta.</p>
+  </div>
+</section>
+
+<!-- ============ ECOSSISTEMA ARDUINO ============ -->
+<section class="secao secao-alt">
+  <div class="container">
+    <div class="secao-titulo"><small>Plataforma de Desenvolvimento</small><h2>Ecossistema Arduino</h2></div>
+    <div class="arduino-painel">
+      <div class="arduino-svg-wrap reveal">
+        <svg viewBox="0 0 320 220" width="100%" height="auto" role="img" aria-label="Diagrama simplificado de uma placa Arduino">
+          <rect x="10" y="10" width="300" height="200" rx="14" fill="#0e2a4a"/>
+          <rect x="30" y="30" width="90" height="60" rx="6" fill="#123c6e" stroke="#1e6fd9" stroke-width="1.5"/>
+          <text x="75" y="65" fill="#cbd5e1" font-size="11" text-anchor="middle" font-family="monospace">ATmega328P</text>
+          <!-- GPIOs digitais topo -->
+          <g fill="#64a6ff">
+            <circle cx="40" cy="16" r="3"/><circle cx="55" cy="16" r="3"/><circle cx="70" cy="16" r="3"/>
+            <circle cx="85" cy="16" r="3"/><circle cx="100" cy="16" r="3"/><circle cx="115" cy="16" r="3"/>
+          </g>
+          <text x="77" y="8" fill="#94a3b8" font-size="8" text-anchor="middle" font-family="monospace">GPIOs DIGITAIS</text>
+          <!-- Entradas analogicas base -->
+          <g fill="#06b6d4">
+            <circle cx="40" cy="204" r="3"/><circle cx="55" cy="204" r="3"/><circle cx="70" cy="204" r="3"/>
+            <circle cx="85" cy="204" r="3"/><circle cx="100" cy="204" r="3"/><circle cx="115" cy="204" r="3"/>
+          </g>
+          <text x="77" y="217" fill="#94a3b8" font-size="8" text-anchor="middle" font-family="monospace">ADC 10-BIT (A0-A5)</text>
+          <!-- I2C / SPI / UART labels -->
+          <rect x="150" y="35" width="140" height="34" rx="6" fill="none" stroke="#334155"/>
+          <text x="220" y="56" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="monospace">I2C — SDA / SCL</text>
+          <rect x="150" y="78" width="140" height="34" rx="6" fill="none" stroke="#334155"/>
+          <text x="220" y="99" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="monospace">SPI — MOSI/MISO/SCK</text>
+          <rect x="150" y="121" width="140" height="34" rx="6" fill="none" stroke="#334155"/>
+          <text x="220" y="142" fill="#e2e8f0" font-size="11" text-anchor="middle" font-family="monospace">UART — RX / TX</text>
+          <rect x="30" y="150" width="90" height="34" rx="6" fill="none" stroke="#334155"/>
+          <text x="75" y="171" fill="#e2e8f0" font-size="10" text-anchor="middle" font-family="monospace">setup() → loop()</text>
+        </svg>
+      </div>
+      <div class="arduino-specs">
+        <div class="arduino-spec-item reveal"><strong>Entradas Analógicas (ADC)</strong><span>Resolução de 10 bits (0 a 1023) para tensões de 0V a 5V — conversão de sinais contínuos como LDR e sensores lineares.</span></div>
+        <div class="arduino-spec-item reveal"><strong>GPIOs Digitais</strong><span>Estados HIGH (5V) ou LOW (0V), limite de corrente de 20–40mA por pino — detecção de estados binários.</span></div>
+        <div class="arduino-spec-item reveal"><strong>Comunicação I2C</strong><span>Pinos SDA e SCL, suporta múltiplos dispositivos com endereços hexadecimais, usando apenas 2 fios de dados.</span></div>
+        <div class="arduino-spec-item reveal"><strong>Comunicação SPI</strong><span>Pinos MOSI, MISO, SCK e SS — comunicação síncrona full-duplex de alta velocidade (ex: RFID MFRC522).</span></div>
+        <div class="arduino-spec-item reveal"><strong>UART (Serial)</strong><span>Pinos RX/TX para comunicação ponto-a-ponto clássica, usada em debug e módulos GPS.</span></div>
+        <div class="arduino-spec-item reveal"><strong>Ciclo setup() / loop()</strong><span><code>setup()</code> roda uma vez ao energizar; <code>loop()</code> roda infinitamente, lendo entradas e atualizando saídas.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DASHBOARD / HUB DE SELEÇÃO ============ -->
+<section class="secao" id="sensores">
+  <div class="container">
+    <div class="secao-titulo"><small>Catálogo</small><h2>10 sensores para IoT e Automação</h2></div>
+
+    <div class="stats-grid">
+      <div class="stat-card reveal"><div class="stat-numero" id="stat-sensores">0</div><div class="stat-label">Sensores Cadastrados</div></div>
+      <div class="stat-card reveal"><div class="stat-numero" id="stat-protocolos">0</div><div class="stat-label">Tipos de Sinal</div></div>
+      <div class="stat-card reveal"><div class="stat-numero" id="stat-categorias">0</div><div class="stat-label">Categorias de Aplicação</div></div>
+    </div>
+
+    <div class="ferramentas">
+      <div class="busca"><input type="search" id="busca-sensor" placeholder="Pesquisar por nome, fabricante ou aplicação..."/></div>
+    </div>
+
+    <div class="filtros-sinal">
+      <span class="filtros-titulo-mini">Categoria</span>
+      <div class="filtros">
+        <button class="chip ativo" data-filtro-categoria="todos">Todos</button>
+        <button class="chip" data-filtro-categoria="temperatura">Temperatura e Umidade</button>
+        <button class="chip" data-filtro-categoria="distancia">Distância</button>
+        <button class="chip" data-filtro-categoria="presenca">Presença</button>
+        <button class="chip" data-filtro-categoria="gas">Gás/Poluição</button>
+        <button class="chip" data-filtro-categoria="vazao">Vazão</button>
+        <button class="chip" data-filtro-categoria="corrente">Corrente Elétrica</button>
+        <button class="chip" data-filtro-categoria="rfid">RFID</button>
+        <button class="chip" data-filtro-categoria="luminosidade">Luminosidade</button>
+      </div>
+    </div>
+    <div class="filtros-sinal">
+      <span class="filtros-titulo-mini">Tipo de Sinal</span>
+      <div class="filtros">
+        <button class="chip ativo" data-filtro-sinal="todos">Todos</button>
+        <button class="chip" data-filtro-sinal="analogico">Analógico</button>
+        <button class="chip" data-filtro-sinal="digital">Digital</button>
+        <button class="chip" data-filtro-sinal="spi">SPI</button>
+        <button class="chip" data-filtro-sinal="1-wire">1-Wire</button>
+      </div>
+    </div>
+
+    <div class="grid-sensores" id="grid-sensores" style="margin-top:2rem"></div>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section class="secao secao-alt">
+  <div class="container">
+    <div class="secao-titulo"><small>Assistente</small><h2>Qual sensor eu preciso?</h2></div>
+    <div class="quiz-box">
+      <div class="quiz-progresso"><span></span><span></span><span></span></div>
+
+      <div class="quiz-passo ativo" id="quiz-passo-1">
+        <h3 style="margin-top:0">O que você quer medir?</h3>
+        <div class="quiz-opcoes">
+          <button class="quiz-opcao" data-quiz="medir" data-valor="temperatura">🌡️ Temperatura</button>
+          <button class="quiz-opcao" data-quiz="medir" data-valor="distancia">📏 Distância</button>
+          <button class="quiz-opcao" data-quiz="medir" data-valor="presenca">🚶 Presença / Segurança</button>
+          <button class="quiz-opcao" data-quiz="medir" data-valor="gas">💨 Gás / Qualidade do ar</button>
+          <button class="quiz-opcao" data-quiz="medir" data-valor="fluido">💧 Fluido / Vazão</button>
+          <button class="quiz-opcao" data-quiz="medir" data-valor="eletricidade">⚡ Corrente Elétrica</button>
+          <button class="quiz-opcao" data-quiz="medir" data-valor="luminosidade">☀️ Luminosidade</button>
+          <button class="quiz-opcao" data-quiz="medir" data-valor="identificacao">📶 Identificação (RFID)</button>
+        </div>
+      </div>
+
+      <div class="quiz-passo" id="quiz-passo-2">
+        <h3 style="margin-top:0">O ambiente é severo ou molhado?</h3>
+        <div class="quiz-opcoes">
+          <button class="quiz-opcao" data-quiz="severo" data-valor="sim">Sim</button>
+          <button class="quiz-opcao" data-quiz="severo" data-valor="nao">Não</button>
+        </div>
+        <button class="quiz-voltar" data-voltar="1">← Voltar</button>
+      </div>
+
+      <div class="quiz-passo" id="quiz-passo-3">
+        <h3 style="margin-top:0">Precisa de contato físico direto com o material?</h3>
+        <div class="quiz-opcoes">
+          <button class="quiz-opcao" data-quiz="contato" data-valor="sim">Sim</button>
+          <button class="quiz-opcao" data-quiz="contato" data-valor="nao">Não</button>
+        </div>
+        <button class="quiz-voltar" data-voltar="2">← Voltar</button>
+      </div>
+
+      <div class="quiz-passo" id="quiz-passo-4">
+        <div class="quiz-resultado">
+          <div class="sensor-icone" id="quiz-resultado-icone" style="margin:0 auto"></div>
+          <h3 id="quiz-resultado-nome" style="margin:1rem 0 .4rem"></h3>
+          <p id="quiz-resultado-resumo"></p>
+          <button class="btn btn-primario" id="quiz-resultado-abrir">Abrir Detalhes →</button>
+          <div><button class="quiz-voltar" id="quiz-reiniciar">↺ Refazer quiz</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="ano"></span> Robótica 4.0 — Catálogo de Sensores IoT baseado no relatório técnico "Sensores para IoT e Automação Industrial na Era da Indústria 4.0".</p>
+  </div>
+</footer>
+
+<!-- ============ MODAL DE DETALHES ============ -->
+<div class="modal-sensor" id="modal-sensor" aria-hidden="true">
+  <div class="modal-sensor-conteudo">
+    <button class="modal-sensor-fechar" id="modal-fechar-btn" aria-label="Fechar">✕</button>
+    <div class="modal-sensor-header">
+      <div class="sensor-icone" id="modal-icone"></div>
+      <div>
+        <h2 id="modal-titulo"></h2>
+        <p id="modal-fabricante" style="margin:0;font-size:.88rem"></p>
+      </div>
+    </div>
+    <div class="modal-sensor-body">
+
+      <div class="modal-secao">
+        <h3>💡 Conceito & Princípio Físico</h3>
+        <p id="modal-conceito"></p>
+        <p id="modal-principio"></p>
+      </div>
+
+      <div class="modal-secao">
+        <h3>📋 Especificações Técnicas</h3>
+        <div class="tabela-wrap"><table class="tabela-specs"><tbody id="modal-specs"></tbody></table></div>
+      </div>
+
+      <div class="modal-secao">
+        <h3>🔌 Diagrama de Pinagem</h3>
+        <div class="pinagem-grid" id="modal-pinagem"></div>
+      </div>
+
+      <div class="modal-secao">
+        <h3>🎛️ Simulador de Dados</h3>
+        <div id="modal-simulador"></div>
+      </div>
+
+      <div class="modal-secao">
+        <h3>🛠️ Aplicações Industriais</h3>
+        <p id="modal-aplicacoes"></p>
+      </div>
+
+      <div class="modal-secao">
+        <h3>💻 Exemplo de Código (Arduino C++)</h3>
+        <div class="codigo-wrap">
+          <button class="btn-copiar" id="btn-copiar-codigo">Copiar Código</button>
+          <pre class="codigo-bloco" id="modal-codigo"></pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>document.getElementById("ano").textContent = new Date().getFullYear();</script>
+<script src="js/script.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/sensors-data.js"></script>
+<script src="js/sensores.js"></script>
+</body>
+</html>
