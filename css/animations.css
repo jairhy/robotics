@@ -1,0 +1,27 @@
+/* =========================================================
+   Animações reutilizáveis
+   ========================================================= */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50%     { transform: translateY(-6px); }
+}
+
+.anim-fade-up { animation: fadeInUp 700ms ease both; }
+.anim-fade-in { animation: fadeIn 700ms ease both; }
+
+/* Aparece ao rolar (JS aplica .visivel) */
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.7,.2,1);
+}
+.reveal.visivel { opacity: 1; transform: translateY(0); }
+
+.hero-visual { animation: float 6s ease-in-out infinite; }
