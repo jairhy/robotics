@@ -120,7 +120,9 @@
       <div class="bloco">
         <h3>🔌 Circuito montado no Tinkercad</h3>
         <div class="circuito-wrap">
-          <img src="./images/desafio1.png">
+          <img src="./images/desafio1.png" alt="Circuito do Desafio 1 montado no Tinkercad: Arduino Uno, sensor PIR, LDR e LED"/>
+        </div>
+        <a class="tinkercad-link btn btn-secundario" href="#" target="_blank" rel="noopener">🔗 Abrir circuito no Tinkercad</a>
       </div>
 
       <div class="bloco">
@@ -207,11 +209,13 @@ void mudarLED(int distancia, int limite, int luminosidade)
         <h3>🎬 Vídeo de demonstração</h3>
         <div class="videos-grid">
           <div class="video-item">
-            <!-- Substitua o conteudo abaixo pelo <iframe> do seu video (YouTube/Drive) -->
-            <div class="video-frame">Vídeo 1 — Funcionamento do sistema e explicação de como os sensores são utilizados</div>
+            <div class="video-frame">
+              <!-- Substitua o conteúdo abaixo pelo <iframe> do seu vídeo (YouTube/Drive), se preferir -->
+              <video src="./videos/desafio1.mp4" controls preload="metadata"></video>
+            </div>
             <div class="video-info">
-              <h4>Funcionamento e explicação dos sensores</h4>
-              <p>Demonstração do LED reagindo à presença e à variação de luminosidade, com a leitura do LDR acompanhada no Monitor Serial.</p>
+              <h4>Iluminação Inteligente em funcionamento</h4>
+              <p>Simulação no Tinkercad mostrando o LED reagindo à presença e à luminosidade do ambiente.</p>
             </div>
           </div>
         </div>
@@ -280,7 +284,7 @@ void mudarLED(int distancia, int limite, int luminosidade)
       <div class="bloco">
         <h3>🔌 Circuito montado no Tinkercad</h3>
         <div class="circuito-wrap">
-          <img src="./images/desafio2.png" >
+          <img src="./images/desafio2.png" alt="Circuito do Desafio 2 montado no Tinkercad: Arduino Uno, sensor ultrassônico HC-SR04, potenciômetro e LED"/>
         </div>
         <a class="tinkercad-link btn btn-secundario" href="#" target="_blank" rel="noopener">🔗 Abrir circuito no Tinkercad</a>
       </div>
@@ -386,16 +390,13 @@ void mudarLed(int distancia, int limite)
         <h3>🎬 Vídeos de demonstração</h3>
         <div class="videos-grid">
           <div class="video-item">
-            <div class="video-frame">Vídeo 1 — Teste com diferentes distâncias</div>
-            <div class="video-info"><h4>Teste com diferentes distâncias</h4><p>Aproximação gradual do obstáculo mostrando as três faixas de resposta do LED.</p></div>
-          </div>
-          <div class="video-item">
-            <div class="video-frame">Vídeo 2 — Teste com diferentes posições do potenciômetro</div>
-            <div class="video-info"><h4>Diferentes posições do potenciômetro</h4><p>Mesma distância física com limites de 10, 20 e 40 cm configurados.</p></div>
-          </div>
-          <div class="video-item">
-            <div class="video-frame">Vídeo 3 — Explicação de como o potenciômetro altera o sistema</div>
-            <div class="video-info"><h4>Explicação da influência do potenciômetro</h4><p>Relação entre a leitura analógica, o <code>map()</code> e o deslocamento das zonas de alerta.</p></div>
+            <div class="video-frame">
+              <video src="./videos/desafio2.mp4" controls preload="metadata"></video>
+            </div>
+            <div class="video-info">
+              <h4>Estacionamento Inteligente em funcionamento</h4>
+              <p>Simulação no Tinkercad mostrando o alerta visual acelerando conforme o obstáculo se aproxima.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -465,7 +466,7 @@ void mudarLed(int distancia, int limite)
       <div class="bloco">
         <h3>🔌 Circuito montado no Tinkercad</h3>
         <div class="circuito-wrap">
-        <img src="./images/desafio3.png">
+          <img src="./images/desafio3.png" alt="Circuito do Desafio 3 montado no Tinkercad: Arduino Uno, sensor DHT22 e três LEDs indicadores"/>
         </div>
         <a class="tinkercad-link btn btn-secundario" href="#" target="_blank" rel="noopener">🔗 Abrir circuito no Tinkercad</a>
       </div>
@@ -571,16 +572,13 @@ void loop()
         <h3>🎬 Vídeos de demonstração</h3>
         <div class="videos-grid">
           <div class="video-item">
-            <div class="video-frame">Vídeo 1 — Testes simulando diferentes temperaturas</div>
-            <div class="video-info"><h4>Diferentes temperaturas</h4><p>Variação da temperatura no DHT22 e comutação entre LED verde e vermelho.</p></div>
-          </div>
-          <div class="video-item">
-            <div class="video-frame">Vídeo 2 — Testes simulando diferentes níveis de umidade</div>
-            <div class="video-info"><h4>Diferentes níveis de umidade</h4><p>Queda da umidade abaixo de 50 % acionando o LED amarelo.</p></div>
-          </div>
-          <div class="video-item">
-            <div class="video-frame">Vídeo 3 — Explicação da lógica utilizada no programa</div>
-            <div class="video-info"><h4>Explicação da lógica</h4><p>Estrutura condicional, definição dos limites e registro das leituras no Monitor Serial.</p></div>
+            <div class="video-frame">
+              <video src="./videos/desafio3.mp4" controls preload="metadata"></video>
+            </div>
+            <div class="video-info">
+              <h4>Ambiente Inteligente em funcionamento</h4>
+              <p>Simulação no Tinkercad mostrando os LEDs indicadores reagindo à temperatura e umidade da estufa.</p>
+            </div>
           </div>
         </div>
       </div>
