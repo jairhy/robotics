@@ -120,102 +120,62 @@
       <div class="bloco">
         <h3>🔌 Circuito montado no Tinkercad</h3>
         <div class="circuito-wrap">
-          <svg viewBox="0 0 720 330" role="img" aria-label="Esquema do circuito do Desafio 1: Arduino com sensor PIR, LDR e LED">
-            <rect x="0" y="0" width="720" height="330" fill="#f8fafc"/>
-            <!-- Arduino -->
-            <rect x="250" y="90" width="210" height="150" rx="10" fill="#0f766e" stroke="#134e4a" stroke-width="2"/>
-            <text x="355" y="150" text-anchor="middle" fill="#ecfeff" font-size="17" font-weight="700" font-family="Segoe UI, Arial">ARDUINO</text>
-            <text x="355" y="172" text-anchor="middle" fill="#99f6e4" font-size="14" font-family="Segoe UI, Arial">UNO R3</text>
-            <!-- pinos rotulos -->
-            <text x="243" y="120" text-anchor="end" fill="#0f172a" font-size="12" font-family="monospace">A0</text>
-            <text x="243" y="160" text-anchor="end" fill="#0f172a" font-size="12" font-family="monospace">D2</text>
-            <text x="243" y="215" text-anchor="end" fill="#0f172a" font-size="12" font-family="monospace">5V/GND</text>
-            <text x="467" y="140" fill="#0f172a" font-size="12" font-family="monospace">~D9</text>
-
-            <!-- LDR -->
-            <rect x="40" y="80" width="120" height="60" rx="8" fill="#fff" stroke="#1e6fd9" stroke-width="2"/>
-            <text x="100" y="105" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="700" font-family="Segoe UI, Arial">LDR</text>
-            <text x="100" y="124" text-anchor="middle" fill="#475569" font-size="11" font-family="Segoe UI, Arial">divisor 10 kΩ</text>
-            <path d="M160 110 H250 V116" stroke="#1e6fd9" stroke-width="2.5" fill="none"/>
-
-            <!-- PIR -->
-            <rect x="40" y="170" width="120" height="60" rx="8" fill="#fff" stroke="#06b6d4" stroke-width="2"/>
-            <text x="100" y="195" text-anchor="middle" fill="#0f172a" font-size="13" font-weight="700" font-family="Segoe UI, Arial">PIR HC-SR501</text>
-            <text x="100" y="214" text-anchor="middle" fill="#475569" font-size="11" font-family="Segoe UI, Arial">saída digital</text>
-            <path d="M160 200 H220 V158 H250" stroke="#06b6d4" stroke-width="2.5" fill="none"/>
-
-            <!-- LED -->
-            <path d="M460 135 H540" stroke="#ef4444" stroke-width="2.5" fill="none"/>
-            <rect x="540" y="115" width="46" height="40" rx="5" fill="#fff" stroke="#64748b" stroke-width="2"/>
-            <text x="563" y="140" text-anchor="middle" fill="#0f172a" font-size="11" font-family="Segoe UI, Arial">220Ω</text>
-            <path d="M586 135 H620" stroke="#ef4444" stroke-width="2.5" fill="none"/>
-            <circle cx="640" cy="135" r="18" fill="#fde68a" stroke="#f59e0b" stroke-width="2.5"/>
-            <text x="640" y="175" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="700" font-family="Segoe UI, Arial">LED</text>
-
-            <!-- GND bus -->
-            <path d="M640 153 V285 H100 V230" stroke="#334155" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
-            <path d="M355 240 V285" stroke="#334155" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
-            <path d="M100 140 V160" stroke="#334155" stroke-width="2.5" fill="none"/>
-            <text x="330" y="305" fill="#334155" font-size="12" font-family="Segoe UI, Arial">Barramento GND comum</text>
-          </svg>
-        </div>
-        <div class="circuito-legenda">
-          <div class="legenda-item"><b>LDR → A0</b> — divisor resistivo com 10 kΩ para GND; leitura analógica 0–1023.</div>
-          <div class="legenda-item"><b>PIR OUT → D2</b> — saída digital HIGH quando detecta movimento; VCC em 5 V.</div>
-          <div class="legenda-item"><b>LED → ~D9</b> — pino PWM em série com resistor de 220 Ω até o GND.</div>
-          <div class="legenda-item"><b>GND comum</b> — todos os componentes compartilham o mesmo terra do Arduino.</div>
-        </div>
-        <!-- Cole abaixo o link do seu projeto público no Tinkercad -->
-        <a class="tinkercad-link btn btn-secundario" href="#" target="_blank" rel="noopener">🔗 Abrir circuito no Tinkercad</a>
+          <img src="./images/desafio1.png">
       </div>
 
       <div class="bloco">
         <h3>💻 Código do Arduino</h3>
         <div class="codigo-caixa">
           <button class="btn-copiar-cod" data-alvo="cod-d1">Copiar código</button>
-<pre id="cod-d1">/* =========================================================
-   DESAFIO 1 - ILUMINACAO INTELIGENTE
-   Sensor PIR (presenca) + LDR (luminosidade) -> LED
-   Logica:
-     Pessoa presente + ambiente escuro -> LED ligado
-     Pessoa presente + ambiente claro  -> LED desligado
-     Sem pessoa                        -> LED desligado
-   ========================================================= */
+<pre id="cod-d1">
+  // C++ code
+//
 
-const int PINO_PIR = 2;    // saida digital do sensor de presenca
-const int PINO_LDR = A0;   // divisor resistivo do LDR
-const int PINO_LED = 9;    // pino PWM para controlar o brilho
+const int trigPin = 12;
+const int echoPin = 11;
+const int ledPin = 10;
+const int lumPin = A1;
 
-const int LIMIAR_ESCURO   = 400;  // abaixo disso o ambiente e considerado escuro
-const int LIMIAR_MUITO_ESCURO = 200; // abaixo disso usa brilho maximo
-
-void setup() {
-  pinMode(PINO_PIR, INPUT);
-  pinMode(PINO_LED, OUTPUT);
+void setup()
+{
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(lumPin, INPUT);
   Serial.begin(9600);
-  Serial.println("Sistema de Iluminacao Inteligente iniciado");
 }
 
-void loop() {
-  bool presenca = digitalRead(PINO_PIR) == HIGH;
-  int  luz      = analogRead(PINO_LDR);   // 0 (escuro) .. 1023 (claro)
-  int  brilho   = 0;
+void loop()
+{
+  // Lê a luminosidade
+  int luminosidade = analogRead(lumPin);
+  
+  // Dispara o sensor ultrassônico
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  
+  // Calcula a distância em centímetros
+  long duracao = pulseIn(echoPin, HIGH);
+  int distancia = duracao * 0.017;
+    
+  // Comportamento do LED
+  mudarLED(distancia, 250, luminosidade);
+}
 
-  if (presenca && luz &lt; LIMIAR_ESCURO) {
-    // Quanto mais escuro, maior o brilho do LED
-    brilho = (luz &lt; LIMIAR_MUITO_ESCURO) ? 255 : 120;
-  } else {
-    brilho = 0;   // sem pessoa OU ambiente ja iluminado
+void mudarLED(int distancia, int limite, int luminosidade)
+{
+  if(distancia < limite){
+  if(luminosidade < 800){
+      digitalWrite(ledPin, HIGH);
+    }else{
+      digitalWrite(ledPin, LOW);
+    }
+  }else{
+    digitalWrite(ledPin, LOW);
   }
-
-  analogWrite(PINO_LED, brilho);
-
-  // Rastreabilidade do comportamento no Monitor Serial
-  Serial.print("PIR=");    Serial.print(presenca ? "HIGH" : "LOW");
-  Serial.print("  LDR=");  Serial.print(luz);
-  Serial.print("  LED=");  Serial.println(brilho);
-
-  delay(300);
 }</pre>
         </div>
       </div>
@@ -320,49 +280,7 @@ void loop() {
       <div class="bloco">
         <h3>🔌 Circuito montado no Tinkercad</h3>
         <div class="circuito-wrap">
-          <svg viewBox="0 0 720 330" role="img" aria-label="Esquema do circuito do Desafio 2: Arduino com HC-SR04, potenciômetro e LED">
-            <rect x="0" y="0" width="720" height="330" fill="#f8fafc"/>
-            <rect x="250" y="90" width="210" height="150" rx="10" fill="#0f766e" stroke="#134e4a" stroke-width="2"/>
-            <text x="355" y="150" text-anchor="middle" fill="#ecfeff" font-size="17" font-weight="700" font-family="Segoe UI, Arial">ARDUINO</text>
-            <text x="355" y="172" text-anchor="middle" fill="#99f6e4" font-size="14" font-family="Segoe UI, Arial">UNO R3</text>
-            <text x="243" y="115" text-anchor="end" fill="#0f172a" font-size="12" font-family="monospace">D9 TRIG</text>
-            <text x="243" y="145" text-anchor="end" fill="#0f172a" font-size="12" font-family="monospace">D10 ECHO</text>
-            <text x="243" y="205" text-anchor="end" fill="#0f172a" font-size="12" font-family="monospace">A0</text>
-            <text x="467" y="140" fill="#0f172a" font-size="12" font-family="monospace">D7</text>
-
-            <!-- HC-SR04 -->
-            <rect x="40" y="78" width="130" height="70" rx="8" fill="#fff" stroke="#1e6fd9" stroke-width="2"/>
-            <circle cx="78" cy="113" r="17" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
-            <circle cx="132" cy="113" r="17" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
-            <text x="105" y="166" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="700" font-family="Segoe UI, Arial">HC-SR04</text>
-            <path d="M170 100 H210 V110 H250" stroke="#1e6fd9" stroke-width="2.5" fill="none"/>
-            <path d="M170 128 H200 V140 H250" stroke="#1e6fd9" stroke-width="2.5" fill="none"/>
-
-            <!-- Potenciometro -->
-            <rect x="40" y="190" width="130" height="60" rx="8" fill="#fff" stroke="#06b6d4" stroke-width="2"/>
-            <circle cx="105" cy="215" r="14" fill="#e2e8f0" stroke="#0891b2" stroke-width="2"/>
-            <path d="M105 215 L114 206" stroke="#0891b2" stroke-width="3"/>
-            <text x="105" y="243" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="700" font-family="Segoe UI, Arial">Potenciômetro 10 kΩ</text>
-            <path d="M170 215 H220 V200 H250" stroke="#06b6d4" stroke-width="2.5" fill="none"/>
-
-            <!-- LED -->
-            <path d="M460 135 H540" stroke="#ef4444" stroke-width="2.5" fill="none"/>
-            <rect x="540" y="115" width="46" height="40" rx="5" fill="#fff" stroke="#64748b" stroke-width="2"/>
-            <text x="563" y="140" text-anchor="middle" fill="#0f172a" font-size="11" font-family="Segoe UI, Arial">220Ω</text>
-            <path d="M586 135 H620" stroke="#ef4444" stroke-width="2.5" fill="none"/>
-            <circle cx="640" cy="135" r="18" fill="#fecaca" stroke="#ef4444" stroke-width="2.5"/>
-            <text x="640" y="175" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="700" font-family="Segoe UI, Arial">LED</text>
-
-            <path d="M640 153 V290 H105 V250" stroke="#334155" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
-            <path d="M355 240 V290" stroke="#334155" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
-            <text x="330" y="310" fill="#334155" font-size="12" font-family="Segoe UI, Arial">Barramento GND comum · VCC 5 V</text>
-          </svg>
-        </div>
-        <div class="circuito-legenda">
-          <div class="legenda-item"><b>TRIG → D9 · ECHO → D10</b> — disparo de 10 µs e medição do tempo de eco com <code>pulseIn()</code>.</div>
-          <div class="legenda-item"><b>Potenciômetro → A0</b> — extremos em 5 V e GND, cursor no analógico; mapeado para 5–50 cm.</div>
-          <div class="legenda-item"><b>LED → D7</b> — em série com resistor de 220 Ω até o GND.</div>
-          <div class="legenda-item"><b>Cálculo</b> — distância (cm) = duração × 0,0343 ÷ 2.</div>
+          <img src="./images/desafio2.png" >
         </div>
         <a class="tinkercad-link btn btn-secundario" href="#" target="_blank" rel="noopener">🔗 Abrir circuito no Tinkercad</a>
       </div>
@@ -371,73 +289,75 @@ void loop() {
         <h3>💻 Código do Arduino</h3>
         <div class="codigo-caixa">
           <button class="btn-copiar-cod" data-alvo="cod-d2">Copiar código</button>
-<pre id="cod-d2">/* =========================================================
-   DESAFIO 2 - ESTACIONAMENTO INTELIGENTE
-   HC-SR04 (distancia) + potenciometro (limite) -> LED
-   Objeto distante          -> LED desligado
-   Objeto se aproximando    -> LED piscando (cada vez mais rapido)
-   Objeto na zona critica   -> LED ligado continuamente
-   ========================================================= */
+<pre id="cod-d2">// C++ code
+//
 
-const int PINO_TRIG = 9;
-const int PINO_ECHO = 10;
-const int PINO_POT  = A0;
-const int PINO_LED  = 7;
+const int trigPin = 12;
+const int echoPin = 11;
+const int ledPin = 10;
+const int potPin = A0;
 
-unsigned long ultimoPisca = 0;
-bool estadoLed = false;
-
-// Le a distancia em centimetros a partir do HC-SR04
-float lerDistanciaCm() {
-  digitalWrite(PINO_TRIG, LOW);
-  delayMicroseconds(2);
-  digitalWrite(PINO_TRIG, HIGH);
-  delayMicroseconds(10);
-  digitalWrite(PINO_TRIG, LOW);
-
-  unsigned long duracao = pulseIn(PINO_ECHO, HIGH, 30000UL);
-  if (duracao == 0) return 400.0;          // nada detectado no alcance
-  return duracao * 0.0343 / 2.0;           // velocidade do som -> cm
-}
-
-void setup() {
-  pinMode(PINO_TRIG, OUTPUT);
-  pinMode(PINO_ECHO, INPUT);
-  pinMode(PINO_LED, OUTPUT);
+void setup()
+{
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(ledPin, OUTPUT);
   Serial.begin(9600);
-  Serial.println("Sistema de Estacionamento Inteligente iniciado");
 }
 
-void loop() {
-  float distancia = lerDistanciaCm();
-  int   leituraPot = analogRead(PINO_POT);          // 0 .. 1023
-  int   limite = map(leituraPot, 0, 1023, 5, 50);   // limite de seguranca em cm
-  float critico = limite / 2.0;
+void loop()
+{
+  // Lê o potenciômetro e converte numa distância limite
+  int potValue = analogRead(potPin);
+  int limiteDistancia = map(potValue, 0, 1023, 2, 200);
+  
+  
+  // Dispara o sensor ultrassônico
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  
+  // Calcula a distância em centímetros
+  long duracao = pulseIn(echoPin, HIGH);
+  int distancia = duracao * 0.017;
 
-  if (distancia &gt; limite) {
-    // Fora da zona monitorada
-    digitalWrite(PINO_LED, LOW);
-    estadoLed = false;
-  } else if (distancia &gt; critico) {
-    // DESAFIO ADICIONAL: intervalo diminui conforme o objeto se aproxima
-    int intervalo = map((int)distancia, (int)critico, limite, 80, 500);
-    intervalo = constrain(intervalo, 80, 500);
-    if (millis() - ultimoPisca &gt;= (unsigned long)intervalo) {
-      ultimoPisca = millis();
-      estadoLed = !estadoLed;
-      digitalWrite(PINO_LED, estadoLed ? HIGH : LOW);
+  // Comportamento do LED
+  mudarLed(distancia, limiteDistancia);
+  
+  // Mostra os valores importantes no monitor serial
+  Serial.print("Distancia: ");
+  Serial.print(distancia);
+  Serial.print("cm | Limite do potenciometro: ");
+  Serial.print(limiteDistancia);
+  Serial.println("cm");
+  
+  delay(150);
+}
+
+void mudarLed(int distancia, int limite)
+{
+    
+  // Comportamento do LED
+  if (distancia <= limite) {
+    if (distancia <= limite / 2) {
+      if (digitalRead(ledPin) == LOW){
+        digitalWrite(ledPin, HIGH);
+      }else{
+         digitalWrite(ledPin, LOW);
+      }
+    }else{
+      delay(250);
+      if (digitalRead(ledPin) == LOW){
+        digitalWrite(ledPin, HIGH);
+      }else{
+         digitalWrite(ledPin, LOW);
+      }
     }
-  } else {
-    // Zona critica: alerta continuo
-    digitalWrite(PINO_LED, HIGH);
-    estadoLed = true;
+  }else{
+  	digitalWrite(ledPin, LOW);
   }
-
-  Serial.print("Distancia=");  Serial.print(distancia, 1);
-  Serial.print(" cm  Limite="); Serial.print(limite);
-  Serial.print(" cm  LED=");    Serial.println(estadoLed ? "ON" : "OFF");
-
-  delay(60);
 }</pre>
         </div>
       </div>
@@ -545,56 +465,7 @@ void loop() {
       <div class="bloco">
         <h3>🔌 Circuito montado no Tinkercad</h3>
         <div class="circuito-wrap">
-          <svg viewBox="0 0 720 340" role="img" aria-label="Esquema do circuito do Desafio 3: Arduino com DHT22 e três LEDs">
-            <rect x="0" y="0" width="720" height="340" fill="#f8fafc"/>
-            <rect x="240" y="90" width="210" height="160" rx="10" fill="#0f766e" stroke="#134e4a" stroke-width="2"/>
-            <text x="345" y="155" text-anchor="middle" fill="#ecfeff" font-size="17" font-weight="700" font-family="Segoe UI, Arial">ARDUINO</text>
-            <text x="345" y="177" text-anchor="middle" fill="#99f6e4" font-size="14" font-family="Segoe UI, Arial">UNO R3</text>
-            <text x="233" y="150" text-anchor="end" fill="#0f172a" font-size="12" font-family="monospace">D2 DATA</text>
-            <text x="457" y="120" fill="#0f172a" font-size="12" font-family="monospace">D5</text>
-            <text x="457" y="170" fill="#0f172a" font-size="12" font-family="monospace">D6</text>
-            <text x="457" y="220" fill="#0f172a" font-size="12" font-family="monospace">D7</text>
-
-            <!-- DHT22 -->
-            <rect x="45" y="115" width="120" height="70" rx="8" fill="#fff" stroke="#1e6fd9" stroke-width="2"/>
-            <rect x="60" y="130" width="90" height="30" rx="4" fill="#e0f2fe" stroke="#7dd3fc"/>
-            <text x="105" y="178" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="700" font-family="Segoe UI, Arial">DHT22</text>
-            <path d="M165 145 H240" stroke="#1e6fd9" stroke-width="2.5" fill="none"/>
-
-            <!-- LED verde -->
-            <path d="M450 115 H520" stroke="#22c55e" stroke-width="2.5" fill="none"/>
-            <rect x="520" y="98" width="42" height="34" rx="5" fill="#fff" stroke="#64748b" stroke-width="2"/>
-            <text x="541" y="120" text-anchor="middle" fill="#0f172a" font-size="10" font-family="Segoe UI, Arial">220Ω</text>
-            <path d="M562 115 H600" stroke="#22c55e" stroke-width="2.5" fill="none"/>
-            <circle cx="620" cy="115" r="15" fill="#bbf7d0" stroke="#22c55e" stroke-width="2.5"/>
-            <text x="660" y="119" fill="#0f172a" font-size="11" font-family="Segoe UI, Arial">OK</text>
-
-            <!-- LED vermelho -->
-            <path d="M450 165 H520" stroke="#ef4444" stroke-width="2.5" fill="none"/>
-            <rect x="520" y="148" width="42" height="34" rx="5" fill="#fff" stroke="#64748b" stroke-width="2"/>
-            <text x="541" y="170" text-anchor="middle" fill="#0f172a" font-size="10" font-family="Segoe UI, Arial">220Ω</text>
-            <path d="M562 165 H600" stroke="#ef4444" stroke-width="2.5" fill="none"/>
-            <circle cx="620" cy="165" r="15" fill="#fecaca" stroke="#ef4444" stroke-width="2.5"/>
-            <text x="660" y="169" fill="#0f172a" font-size="11" font-family="Segoe UI, Arial">T alta</text>
-
-            <!-- LED amarelo -->
-            <path d="M450 215 H520" stroke="#eab308" stroke-width="2.5" fill="none"/>
-            <rect x="520" y="198" width="42" height="34" rx="5" fill="#fff" stroke="#64748b" stroke-width="2"/>
-            <text x="541" y="220" text-anchor="middle" fill="#0f172a" font-size="10" font-family="Segoe UI, Arial">220Ω</text>
-            <path d="M562 215 H600" stroke="#eab308" stroke-width="2.5" fill="none"/>
-            <circle cx="620" cy="215" r="15" fill="#fef08a" stroke="#eab308" stroke-width="2.5"/>
-            <text x="660" y="219" fill="#0f172a" font-size="11" font-family="Segoe UI, Arial">U baixa</text>
-
-            <path d="M620 230 V300 H105 V185" stroke="#334155" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
-            <path d="M345 250 V300" stroke="#334155" stroke-width="2.5" fill="none" stroke-dasharray="6 4"/>
-            <text x="320" y="320" fill="#334155" font-size="12" font-family="Segoe UI, Arial">Barramento GND comum · VCC 5 V</text>
-          </svg>
-        </div>
-        <div class="circuito-legenda">
-          <div class="legenda-item"><b>DHT22 DATA → D2</b> — leitura digital de temperatura e umidade a cada 2 s.</div>
-          <div class="legenda-item"><b>LED verde → D5</b> — indica condição adequada do ambiente.</div>
-          <div class="legenda-item"><b>LED vermelho → D6</b> — indica temperatura acima do limite.</div>
-          <div class="legenda-item"><b>LED amarelo → D7</b> — indica umidade abaixo do limite.</div>
+        <img src="./images/desafio3.png">
         </div>
         <a class="tinkercad-link btn btn-secundario" href="#" target="_blank" rel="noopener">🔗 Abrir circuito no Tinkercad</a>
       </div>
@@ -603,80 +474,70 @@ void loop() {
         <h3>💻 Código do Arduino</h3>
         <div class="codigo-caixa">
           <button class="btn-copiar-cod" data-alvo="cod-d3">Copiar código</button>
-<pre id="cod-d3">/* =========================================================
-   DESAFIO 3 - AMBIENTE INTELIGENTE (ESTUFA)
-   DHT22 (temperatura + umidade) -> LEDs indicadores
-   Verde    -> condicao adequada
-   Vermelho -> temperatura acima do limite
-   Amarelo  -> umidade abaixo do limite
-   Alerta duplo (T alta + U baixa) -> vermelho e amarelo piscando
-   Comunicacao de dados via Monitor Serial (9600 baud)
-   ========================================================= */
-
-#include &lt;DHT.h&gt;
-
-#define PINO_DHT  2
-#define TIPO_DHT  DHT22
-
-const int LED_VERDE    = 5;
-const int LED_VERMELHO = 6;
-const int LED_AMARELO  = 7;
-
-const float TEMP_MAX = 30.0;  // limite superior de temperatura (C)
-const float UMID_MIN = 50.0;  // limite inferior de umidade (%)
-
-DHT dht(PINO_DHT, TIPO_DHT);
-
-unsigned long ultimoPisca = 0;
-bool piscaEstado = false;
-
-void setup() {
-  pinMode(LED_VERDE, OUTPUT);
-  pinMode(LED_VERMELHO, OUTPUT);
-  pinMode(LED_AMARELO, OUTPUT);
-  dht.begin();
+<pre id="cod-d3">// C++ code
+//
+void setup()
+{
+  pinMode(A0, INPUT);
   Serial.begin(9600);
-  Serial.println("Sistema de Ambiente Inteligente iniciado");
-  Serial.println("Temp(C);Umid(%);Estado");
+  pinMode(A1, INPUT);
+  pinMode(11, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(3, OUTPUT);
 }
 
-void loop() {
-  float temperatura = dht.readTemperature();
-  float umidade     = dht.readHumidity();
+void loop()
+{
+  Serial.println((-40 + 0.488155 * (analogRead(A0) - 20)));
+  delay(1000); // Wait for 1000 millisecond(s)
+  Serial.println(analogRead(A1));
 
-  if (isnan(temperatura) || isnan(umidade)) {
-    Serial.println("Falha na leitura do DHT22");
-    delay(2000);
-    return;
+  delay(50); // Wait for 50 millisecond(s)
+  if ((-40 + 0.488155 * (analogRead(A0) - 20)) > 35) {
+    analogWrite(11, 204);
+    analogWrite(10, 0);
+    analogWrite(9, 0);
+  }
+  if ((-40 + 0.488155 * (analogRead(A0) - 20)) > 26 && (-40 + 0.488155 * (analogRead(A0) - 20)) <= 35) {
+    analogWrite(11, 255);
+    analogWrite(10, 204);
+    analogWrite(9, 0);
+  }
+  if ((-40 + 0.488155 * (analogRead(A0) - 20)) >= 18 && (-40 + 0.488155 * (analogRead(A0) - 20)) <= 26) {
+    analogWrite(11, 51);
+    analogWrite(10, 255);
+    analogWrite(9, 51);
+  }
+  if ((-40 + 0.488155 * (analogRead(A0) - 20)) < 18 && (-40 + 0.488155 * (analogRead(A0) - 20)) > 0) {
+    analogWrite(11, 0);
+    analogWrite(10, 204);
+    analogWrite(9, 204);
+  }
+  if ((-40 + 0.488155 * (analogRead(A0) - 20)) <= 0) {
+    analogWrite(11, 102);
+    analogWrite(10, 255);
+    analogWrite(9, 255);
   }
 
-  bool tempAlta  = temperatura &gt; TEMP_MAX;
-  bool umidBaixa = umidade &lt; UMID_MIN;
-
-  if (tempAlta &amp;&amp; umidBaixa) {
-    // DESAFIO ADICIONAL: duas condicoes simultaneas -> piscar sincronizado
-    if (millis() - ultimoPisca &gt;= 300) {
-      ultimoPisca = millis();
-      piscaEstado = !piscaEstado;
-    }
-    digitalWrite(LED_VERDE, LOW);
-    digitalWrite(LED_VERMELHO, piscaEstado ? HIGH : LOW);
-    digitalWrite(LED_AMARELO,  piscaEstado ? HIGH : LOW);
-  } else {
-    digitalWrite(LED_VERMELHO, tempAlta  ? HIGH : LOW);
-    digitalWrite(LED_AMARELO,  umidBaixa ? HIGH : LOW);
-    digitalWrite(LED_VERDE, (!tempAlta &amp;&amp; !umidBaixa) ? HIGH : LOW);
+  delay(50); // Wait for 50 millisecond(s)
+  if (analogRead(A1) < 303) {
+    analogWrite(6, 255);
+    analogWrite(5, 0);
+    analogWrite(3, 0);
   }
-
-  // Comunicacao de dados: leitura + estado do sistema
-  Serial.print(temperatura, 1); Serial.print(";");
-  Serial.print(umidade, 1);     Serial.print(";");
-  if (tempAlta &amp;&amp; umidBaixa)  Serial.println("ALERTA DUPLO: TEMP ALTA + UMIDADE BAIXA");
-  else if (tempAlta)          Serial.println("TEMPERATURA ALTA");
-  else if (umidBaixa)         Serial.println("UMIDADE BAIXA");
-  else                        Serial.println("CONDICAO ADEQUADA");
-
-  delay(2000);   // DHT22 suporta 1 leitura a cada 2 segundos
+  if (analogRead(A1) >= 303 && analogRead(A1) <= 563) {
+    analogWrite(6, 51);
+    analogWrite(5, 255);
+    analogWrite(3, 51);
+  }
+  if (analogRead(A1) > 563) {
+    analogWrite(6, 51);
+    analogWrite(5, 102);
+    analogWrite(3, 255);
+  }
 }</pre>
         </div>
       </div>
