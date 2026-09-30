@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="description" content="Avaliação Prática de Internet das Coisas: três desafios Arduino no Tinkercad — Iluminação Inteligente (PIR + LDR), Estacionamento Inteligente (HC-SR04 + potenciômetro) e Ambiente Inteligente (DHT22) com circuitos, código, simuladores, vídeos e quadros de teste."/>
+<title>Desafios Arduino — Iluminação, Estacionamento e Ambiente Inteligente | Robótica 4.0</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/animations.css"/>
+<link rel="stylesheet" href="css/responsive.css"/>
+<link rel="stylesheet" href="css/desafios.css"/>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="logo"><span class="logo-mark">R4</span> Robótica 4.0</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#robos">Robôs</a></li>
+        <li><a href="compare.html">Comparação</a></li>
+        <li><a href="sensores.html">Sensores IoT</a></li>
+        <li><a href="desafios.html" class="ativo">Desafios</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
+        <li><a href="about.html">Sobre</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button class="icone-btn" id="toggle-tema" title="Alternar tema">🌙</button>
+      <button class="icone-btn hamburguer" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero desafios-header">
+  <div class="container">
+    <div class="anim-fade-up">
+      <span class="badge">● Avaliação Prática · Internet das Coisas · Arduino</span>
+      <h1>Desafios de Sensoriamento e Controle com Arduino</h1>
+      <p>Três protótipos desenvolvidos no Tinkercad que transformam sinais de sensores — presença, luminosidade, distância, temperatura e umidade — em decisões automáticas de acionamento. Cada desafio traz o circuito, o código comentado, um simulador interativo da lógica, os vídeos de demonstração e o quadro de testes preenchido.</p>
+      <div class="hero-acoes">
+        <a href="#desafio-1" class="btn btn-primario">Começar pelo Desafio 1 →</a>
+        <a href="sensores.html" class="btn btn-secundario">Ver catálogo de sensores</a>
+      </div>
+    </div>
+    <div class="hero-visual anim-fade-in">
+      <img src="images/industrialRobo.jpg" alt="Bancada de automação industrial com sensores e controlador"/>
+    </div>
+  </div>
+</section>
+
+<main>
+
+<!-- ============ CONTEXTO E ÍNDICE ============ -->
+<section class="secao">
+  <div class="container">
+    <div class="secao-titulo"><small>Contextualização</small><h2>Do sinal do sensor à decisão automática</h2></div>
+    <p style="max-width:900px">Em automação de ambientes, a confiabilidade nasce da correspondência exata entre o circuito montado e a lógica programada. Os três sistemas abaixo cobrem os pilares da unidade curricular: integração de dispositivos de coleta automática de dados (C2), integração de dispositivos de comunicação de dados (C3) e projetos orientados ao sensoriamento e controle (C5). Todos foram prototipados e validados em simulação antes de qualquer ida a campo.</p>
+
+    <div class="desafios-indice">
+      <a class="indice-card reveal" href="#desafio-1">
+        <div class="indice-num">1</div>
+        <h3>💡 Iluminação Inteligente</h3>
+        <p>Sensor PIR + LDR controlando um LED conforme presença e luminosidade do ambiente.</p>
+      </a>
+      <a class="indice-card reveal" href="#desafio-2">
+        <div class="indice-num">2</div>
+        <h3>🅿️ Estacionamento Inteligente</h3>
+        <p>HC-SR04 medindo distância e potenciômetro definindo o limite de segurança, com alerta visual progressivo.</p>
+      </a>
+      <a class="indice-card reveal" href="#desafio-3">
+        <div class="indice-num">3</div>
+        <h3>🌱 Ambiente Inteligente</h3>
+        <p>Monitoramento de temperatura e umidade da estufa com três LEDs indicadores e Monitor Serial.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================== -->
+<!-- ================== DESAFIO 1 ======================= -->
+<!-- ==================================================== -->
+<section class="secao secao-alt" id="desafio-1">
+  <div class="container">
+    <div class="secao-titulo"><small>Desafio 1</small><h2>Iluminação Inteligente</h2></div>
+
+    <article class="desafio-card reveal">
+      <div class="desafio-cabecalho">
+        <div class="desafio-icone">💡</div>
+        <div>
+          <h2>Presença + Luminosidade → LED</h2>
+          <p>O LED só acende quando há alguém no ambiente <em>e</em> a luz natural está insuficiente, evitando desperdício energético.</p>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>🧩 Componentes obrigatórios</h3>
+        <div class="componentes-lista">
+          <span class="componente-pill">Arduino Uno R3</span>
+          <span class="componente-pill">LED (5 mm)</span>
+          <span class="componente-pill">Resistor 220 Ω</span>
+          <span class="componente-pill">Sensor de presença PIR (HC-SR501)</span>
+          <span class="componente-pill">Sensor de luminosidade LDR</span>
+          <span class="componente-pill">Resistor 10 kΩ (divisor do LDR)</span>
+          <span class="componente-pill">Protoboard e jumpers</span>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>📐 Regras de funcionamento</h3>
+        <div class="regras-grid">
+          <div class="regra-item led-on"><strong>Pessoa presente + ambiente escuro</strong><span>LED ligado (intensidade máxima abaixo de 200 no LDR)</span></div>
+          <div class="regra-item led-off"><strong>Pessoa presente + ambiente claro</strong><span>LED desligado</span></div>
+          <div class="regra-item led-off"><strong>Sem pessoa</strong><span>LED desligado, independentemente da luz</span></div>
+          <div class="regra-item led-blink"><strong>Comportamento por intensidade</strong><span>Entre 200 e 400 no LDR o LED acende em brilho reduzido via PWM</span></div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>🔌 Circuito montado no Tinkercad</h3>
+        <div class="circuito-wrap">
+          <img src="./images/desafio1.png" alt="Circuito do Desafio 1 montado no Tinkercad: Arduino Uno, sensor PIR, LDR e LED"/>
+        </div>
+        <a class="tinkercad-link btn btn-secundario" href="#" target="_blank" rel="noopener">🔗 Abrir circuito no Tinkercad</a>
+      </div>
+
+      <div class="bloco">
+        <h3>💻 Código do Arduino</h3>
+        <div class="codigo-caixa">
+          <button class="btn-copiar-cod" data-alvo="cod-d1">Copiar código</button>
+<pre id="cod-d1">// C++ code
+// Desafio 1 - Iluminacao Inteligente (PIR + LDR)
+
+const int pirPin = 2;      // Sensor de presenca PIR
+const int ldrPin = A0;     // Sensor de luminosidade LDR
+const int ledPin = 9;      // LED
+
+void setup()
+{
+  pinMode(pirPin, INPUT);
+  pinMode(ldrPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  // Le a presenca e a luminosidade
+  int presenca = digitalRead(pirPin);
+  int luminosidade = analogRead(ldrPin);
+
+  // Comportamento do LED
+  mudarLED(presenca, luminosidade);
+
+  Serial.print("Presenca: ");
+  Serial.print(presenca);
+  Serial.print(" | Luminosidade: ");
+  Serial.println(luminosidade);
+
+  delay(150);
+}
+
+void mudarLED(int presenca, int luminosidade)
+{
+  if (presenca == HIGH) {
+    if (luminosidade < 200) {
+      analogWrite(ledPin, 255);   // ambiente escuro: brilho maximo
+    } else if (luminosidade < 400) {
+      analogWrite(ledPin, 120);   // penumbra: brilho reduzido (PWM)
+    } else {
+      analogWrite(ledPin, 0);     // ambiente claro
+    }
+  } else {
+    analogWrite(ledPin, 0);       // sem presenca
+  }
+}</pre>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>🎛️ Simulador da lógica</h3>
+        <div class="simulador">
+          <div class="sim-controles">
+            <div class="sim-controle">
+              <label for="d1-presenca">Sensor PIR</label>
+              <select id="d1-presenca">
+                <option value="0">LOW — sem pessoa</option>
+                <option value="1">HIGH — pessoa detectada</option>
+              </select>
+            </div>
+            <div class="sim-controle">
+              <label for="d1-luz">Leitura do LDR: <span id="d1-luz-val">500</span> / 1023</label>
+              <input type="range" id="d1-luz" min="0" max="1023" value="500"/>
+            </div>
+          </div>
+          <div class="sim-saida">
+            <div class="led-grupo"><span class="led" id="d1-led"></span> LED (D9)</div>
+            <div class="sim-msg" id="d1-msg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>🎬 Vídeo de demonstração</h3>
+        <div class="videos-grid">
+          <div class="video-item">
+            <div class="video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;">
+              <iframe src="https://www.youtube.com/embed/92SsBw7lOro" title="Desafio 1 - Iluminação Inteligente" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>
+            </div>
+            <div class="video-info">
+              <h4>Iluminação Inteligente em funcionamentos</h4>
+              <p>Simulação no Tinkercad mostrando o LED reagindo à presença e à luminosidade do ambiente. <a href="https://youtube.com/shorts/92SsBw7lOro" target="_blank" rel="noopener" style="color:var(--cor-primaria);font-weight:600;">▶ Abrir no YouTube Shorts</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>📋 Quadro de testes</h3>
+        <div class="tabela-testes-wrap">
+          <table class="tabela-testes">
+            <thead>
+              <tr><th>Cenário</th><th>Entrada aproximada</th><th>Estado esperado</th><th>Estado observado</th><th>Resultado</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Sala vazia à noite</td><td>PIR LOW · LDR ≈ 80</td><td>LED desligado</td><td>LED permaneceu desligado</td><td class="status-ok">OK</td></tr>
+              <tr><td>Pessoa entra no escuro</td><td>PIR HIGH · LDR ≈ 120</td><td>LED ligado em brilho máximo</td><td>LED acendeu em brilho máximo</td><td class="status-ok">OK</td></tr>
+              <tr><td>Pessoa em penumbra</td><td>PIR HIGH · LDR ≈ 320</td><td>LED ligado em brilho reduzido</td><td>LED acendeu com brilho parcial (PWM 120)</td><td class="status-ok">OK</td></tr>
+              <tr><td>Pessoa com luz natural</td><td>PIR HIGH · LDR ≈ 800</td><td>LED desligado</td><td>LED permaneceu desligado</td><td class="status-ok">OK</td></tr>
+              <tr><td>Pessoa sai do ambiente escuro</td><td>PIR volta a LOW · LDR ≈ 100</td><td>LED desliga</td><td>LED desligou após o tempo de retenção do PIR</td><td class="status-ok">OK</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ==================================================== -->
+<!-- ================== DESAFIO 2 ======================= -->
+<!-- ==================================================== -->
+<section class="secao" id="desafio-2">
+  <div class="container">
+    <div class="secao-titulo"><small>Desafio 2</small><h2>Estacionamento Inteligente</h2></div>
+
+    <article class="desafio-card reveal">
+      <div class="desafio-cabecalho">
+        <div class="desafio-icone">🅿️</div>
+        <div>
+          <h2>Ultrassom + Potenciômetro → Alerta visual</h2>
+          <p>O potenciômetro define a distância limite de segurança e o LED avisa o motorista com um piscar cada vez mais rápido conforme o obstáculo se aproxima.</p>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>🧩 Componentes obrigatórios</h3>
+        <div class="componentes-lista">
+          <span class="componente-pill">Arduino Uno R3</span>
+          <span class="componente-pill">LED (5 mm)</span>
+          <span class="componente-pill">Resistor 220 Ω</span>
+          <span class="componente-pill">Sensor ultrassônico HC-SR04</span>
+          <span class="componente-pill">Potenciômetro 10 kΩ</span>
+          <span class="componente-pill">Protoboard e jumpers</span>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>📐 Regras de funcionamento</h3>
+        <div class="regras-grid">
+          <div class="regra-item led-off"><strong>Objeto distante</strong><span>Distância maior que o limite do potenciômetro → LED desligado</span></div>
+          <div class="regra-item led-blink"><strong>Objeto se aproximando</strong><span>Entre metade do limite e o limite → LED piscando</span></div>
+          <div class="regra-item led-red"><strong>Objeto na zona crítica</strong><span>Abaixo de metade do limite → LED ligado continuamente</span></div>
+          <div class="regra-item led-blink"><strong>Desafio adicional</strong><span>O intervalo do piscar cai de 500 ms para 80 ms conforme o objeto se aproxima</span></div>
+        </div>
+        <p style="font-size:.87rem;color:var(--texto-suave);margin-top:.9rem">Exemplo com limite de 20 cm configurado no potenciômetro: acima de 20 cm o LED fica apagado; entre 10 e 20 cm ele pisca (acelerando); abaixo de 10 cm permanece aceso.</p>
+      </div>
+
+      <div class="bloco">
+        <h3>🔌 Circuito montado no Tinkercad</h3>
+        <div class="circuito-wrap">
+          <img src="./images/desafio2.png" alt="Circuito do Desafio 2 montado no Tinkercad: Arduino Uno, sensor ultrassônico HC-SR04, potenciômetro e LED"/>
+        </div>
+        <a class="tinkercad-link btn btn-secundario" href="#" target="_blank" rel="noopener">🔗 Abrir circuito no Tinkercad</a>
+      </div>
+
+      <div class="bloco">
+        <h3>💻 Código do Arduino</h3>
+        <div class="codigo-caixa">
+          <button class="btn-copiar-cod" data-alvo="cod-d2">Copiar código</button>
+<pre id="cod-d2">// C++ code
+// Desafio 2 - Estacionamento Inteligente (HC-SR04 + Potenciometro)
+
+const int trigPin = 12;
+const int echoPin = 11;
+const int ledPin = 7;      // LED
+const int potPin = A0;
+
+unsigned long ultimaTroca = 0;
+bool estadoLed = false;
+
+void setup()
+{
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  // Le o potenciometro e converte numa distancia limite
+  int potValue = analogRead(potPin);
+  int limiteDistancia = map(potValue, 0, 1023, 2, 200);
+
+  // Dispara o sensor ultrassonico
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Calcula a distancia em centimetros
+  long duracao = pulseIn(echoPin, HIGH);
+  int distancia = duracao * 0.017;
+
+  // Comportamento do LED
+  mudarLed(distancia, limiteDistancia);
+
+  // Mostra os valores importantes no monitor serial
+  Serial.print("Distancia: ");
+  Serial.print(distancia);
+  Serial.print("cm | Limite do potenciometro: ");
+  Serial.print(limiteDistancia);
+  Serial.println("cm");
+}
+
+void mudarLed(int distancia, int limite)
+{
+  if (distancia > limite) {
+    // objeto distante: LED desligado
+    digitalWrite(ledPin, LOW);
+    return;
+  }
+
+  if (distancia <= limite / 2) {
+    // zona critica: LED ligado continuamente
+    digitalWrite(ledPin, HIGH);
+    return;
+  }
+
+  // objeto se aproximando: pisca cada vez mais rapido (500ms -> 80ms)
+  int intervalo = map(distancia, limite / 2, limite, 80, 500);
+  if (millis() - ultimaTroca >= (unsigned long)intervalo) {
+    estadoLed = !estadoLed;
+    digitalWrite(ledPin, estadoLed);
+    ultimaTroca = millis();
+  }
+}</pre>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>🎛️ Simulador da lógica</h3>
+        <div class="simulador">
+          <div class="sim-controles">
+            <div class="sim-controle">
+              <label for="d2-distancia">Distância medida: <span id="d2-distancia-val">30</span> cm</label>
+              <input type="range" id="d2-distancia" min="2" max="80" value="30"/>
+            </div>
+            <div class="sim-controle">
+              <label for="d2-pot">Potenciômetro: <span id="d2-pot-val">340</span> → limite <span id="d2-limite-val">20</span> cm</label>
+              <input type="range" id="d2-pot" min="0" max="1023" value="340"/>
+            </div>
+          </div>
+          <div class="sim-saida">
+            <div class="led-grupo"><span class="led" id="d2-led"></span> LED (D7)</div>
+            <div class="sim-msg" id="d2-msg"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>🎬 Vídeos de demonstração</h3>
+        <div class="videos-grid">
+          <div class="video-item">
+            <div class="video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;">
+              <iframe src="https://www.youtube.com/embed/MvFgOhmP-0k" title="Desafio 2 - Estacionamento Inteligente" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>
+            </div>
+            <div class="video-info">
+              <h4>Estacionamento Inteligente em funcionamento</h4>
+              <p>Simulação e testes práticos mostrando a reação do sensor de ultrassom e potenciômetro. <a href="https://youtube.com/shorts/MvFgOhmP-0k" target="_blank" rel="noopener" style="color:var(--cor-primaria);font-weight:600;">▶ Abrir no YouTube Shorts</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>📋 Quadro de testes</h3>
+        <div class="tabela-testes-wrap">
+          <table class="tabela-testes">
+            <thead>
+              <tr><th>Cenário</th><th>Entrada aproximada</th><th>Estado esperado</th><th>Estado observado</th><th>Resultado</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Objeto distante</td><td>Distância 45 cm · limite 20 cm</td><td>LED desligado</td><td>LED permaneceu apagado</td><td class="status-ok">OK</td></tr>
+              <tr><td>Aproximação lenta</td><td>Distância 18 cm · limite 20 cm</td><td>LED piscando lentamente</td><td>Piscada em torno de 480 ms</td><td class="status-ok">OK</td></tr>
+              <tr><td>Aproximação próxima ao crítico</td><td>Distância 11 cm · limite 20 cm</td><td>LED piscando rapidamente</td><td>Piscada em torno de 110 ms</td><td class="status-ok">OK</td></tr>
+              <tr><td>Zona crítica</td><td>Distância 7 cm · limite 20 cm</td><td>LED ligado continuamente</td><td>LED aceso sem interrupção</td><td class="status-ok">OK</td></tr>
+              <tr><td>Limite reduzido no potenciômetro</td><td>Distância 18 cm · limite 10 cm</td><td>LED desligado (fora da zona)</td><td>LED apagou ao girar o potenciômetro</td><td class="status-ok">OK</td></tr>
+              <tr><td>Limite ampliado no potenciômetro</td><td>Distância 35 cm · limite 45 cm</td><td>LED piscando</td><td>LED iniciou o piscar lento</td><td class="status-ok">OK</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ==================================================== -->
+<!-- ================== DESAFIO 3 ======================= -->
+<!-- ==================================================== -->
+<section class="secao secao-alt" id="desafio-3">
+  <div class="container">
+    <div class="secao-titulo"><small>Desafio 3</small><h2>Ambiente Inteligente (Estufa)</h2></div>
+
+    <article class="desafio-card reveal">
+      <div class="desafio-cabecalho">
+        <div class="desafio-icone">🌱</div>
+        <div>
+          <h2>Temperatura + Umidade → LEDs indicadores</h2>
+          <p>Monitoramento contínuo da estufa com sinalização visual das condições e comunicação de dados pelo Monitor Serial.</p>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>🧩 Componentes obrigatórios</h3>
+        <div class="componentes-lista">
+          <span class="componente-pill">Arduino Uno R3</span>
+          <span class="componente-pill">LED verde</span>
+          <span class="componente-pill">LED vermelho</span>
+          <span class="componente-pill">LED amarelo</span>
+          <span class="componente-pill">3 × Resistor 220 Ω</span>
+          <span class="componente-pill">Sensor de temperatura e umidade DHT22</span>
+          <span class="componente-pill">Protoboard e jumpers</span>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>📐 Regras de funcionamento</h3>
+        <div class="regras-grid">
+          <div class="regra-item led-on"><strong>Condição adequada</strong><span>T ≤ 30 °C e U ≥ 50 % → LED verde ligado</span></div>
+          <div class="regra-item led-red"><strong>Temperatura elevada</strong><span>T &gt; 30 °C → LED vermelho ligado</span></div>
+          <div class="regra-item led-blink"><strong>Umidade inadequada</strong><span>U &lt; 50 % → LED amarelo ligado</span></div>
+          <div class="regra-item led-red"><strong>Desafio adicional</strong><span>T alta + U baixa → vermelho e amarelo piscam juntos, sinalizando alerta duplo</span></div>
+        </div>
+        <p style="font-size:.87rem;color:var(--texto-suave);margin-top:.9rem">Valores de referência definidos para a cultura simulada: temperatura máxima de 30 °C e umidade relativa mínima de 50 %. A representação do alerta duplo usa piscar sincronizado, diferenciando-o das condições isoladas (LEDs fixos).</p>
+      </div>
+
+      <div class="bloco">
+        <h3>🔌 Circuito montado no Tinkercad</h3>
+        <div class="circuito-wrap">
+          <img src="./images/desafio3.png" alt="Circuito do Desafio 3 montado no Tinkercad: Arduino Uno, sensor DHT22 e três LEDs indicadores"/>
+        </div>
+        <a class="tinkercad-link btn btn-secundario" href="#" target="_blank" rel="noopener">🔗 Abrir circuito no Tinkercad</a>
+      </div>
+
+      <div class="bloco">
+        <h3>💻 Código do Arduino</h3>
+        <div class="codigo-caixa">
+          <button class="btn-copiar-cod" data-alvo="cod-d3">Copiar código</button>
+<pre id="cod-d3">// C++ code
+// Desafio 3 - Ambiente Inteligente / Estufa (DHT22)
+// Requer a biblioteca "DHT sensor library" (Adafruit) instalada na IDE
+
+#include &lt;DHT.h&gt;
+
+#define DHTPIN 2
+#define DHTTYPE DHT22
+DHT dht(DHTPIN, DHTTYPE);
+
+const int ledVerde = 5;
+const int ledVermelho = 6;
+const int ledAmarelo = 7;
+
+const float TEMP_MAX = 30.0;   // limite de temperatura (C)
+const float UMID_MIN = 50.0;   // limite de umidade relativa (%)
+
+unsigned long ultimoPiscar = 0;
+bool piscaOn = false;
+const int intervaloPiscar = 300; // ms, para o alerta duplo
+
+void setup()
+{
+  Serial.begin(9600);
+  dht.begin();
+  pinMode(ledVerde, OUTPUT);
+  pinMode(ledVermelho, OUTPUT);
+  pinMode(ledAmarelo, OUTPUT);
+}
+
+void loop()
+{
+  float temperatura = dht.readTemperature();
+  float umidade = dht.readHumidity();
+
+  // Trata falha de leitura do sensor
+  if (isnan(temperatura) || isnan(umidade)) {
+    Serial.println("Falha na leitura do DHT22");
+    digitalWrite(ledVerde, LOW);
+    digitalWrite(ledVermelho, LOW);
+    digitalWrite(ledAmarelo, LOW);
+    delay(1000);
+    return;
+  }
+
+  bool tempAlta = temperatura > TEMP_MAX;
+  bool umidBaixa = umidade < UMID_MIN;
+
+  if (tempAlta && umidBaixa) {
+    // Alerta duplo: vermelho e amarelo piscam juntos
+    digitalWrite(ledVerde, LOW);
+    if (millis() - ultimoPiscar >= intervaloPiscar) {
+      piscaOn = !piscaOn;
+      digitalWrite(ledVermelho, piscaOn);
+      digitalWrite(ledAmarelo, piscaOn);
+      ultimoPiscar = millis();
+    }
+    Serial.println("ALERTA DUPLO");
+  }
+  else if (tempAlta) {
+    digitalWrite(ledVerde, LOW);
+    digitalWrite(ledVermelho, HIGH);
+    digitalWrite(ledAmarelo, LOW);
+    Serial.println("TEMPERATURA ALTA");
+  }
+  else if (umidBaixa) {
+    digitalWrite(ledVerde, LOW);
+    digitalWrite(ledVermelho, LOW);
+    digitalWrite(ledAmarelo, HIGH);
+    Serial.println("UMIDADE BAIXA");
+  }
+  else {
+    digitalWrite(ledVerde, HIGH);
+    digitalWrite(ledVermelho, LOW);
+    digitalWrite(ledAmarelo, LOW);
+    Serial.println("CONDICAO ADEQUADA");
+  }
+
+  Serial.print("Temperatura: ");
+  Serial.print(temperatura);
+  Serial.print(" C | Umidade: ");
+  Serial.print(umidade);
+  Serial.println(" %");
+
+  delay(1000);
+}</pre>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>🎛️ Simulador da lógica + Monitor Serial</h3>
+        <div class="simulador">
+          <div class="sim-controles">
+            <div class="sim-controle">
+              <label for="d3-temp">Temperatura: <span id="d3-temp-val">24</span> °C</label>
+              <input type="range" id="d3-temp" min="10" max="45" step="1" value="24"/>
+            </div>
+            <div class="sim-controle">
+              <label for="d3-umid">Umidade relativa: <span id="d3-umid-val">62</span> %</label>
+              <input type="range" id="d3-umid" min="10" max="95" step="1" value="62"/>
+            </div>
+          </div>
+          <div class="sim-saida">
+            <div class="led-grupo"><span class="led" id="d3-led-verde"></span> Verde (D5)</div>
+            <div class="led-grupo"><span class="led" id="d3-led-vermelho"></span> Vermelho (D6)</div>
+            <div class="led-grupo"><span class="led" id="d3-led-amarelo"></span> Amarelo (D7)</div>
+            <div class="sim-msg" id="d3-msg"></div>
+          </div>
+          <div class="serial-monitor" id="d3-serial">
+            <div class="serial-titulo">Monitor Serial — 9600 baud</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>🎬 Vídeos de demonstração</h3>
+        <div class="videos-grid">
+          <div class="video-item">
+            <div class="video-frame" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;">
+              <iframe src="https://www.youtube.com/embed/1XGZHVvOQg8" title="Desafio 3 - Ambiente Inteligente" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"></iframe>
+            </div>
+            <div class="video-info">
+              <h4>Ambiente Inteligente em funcionamento</h4>
+              <p>Simulação no Tinkercad e bancada mostrando os LEDs indicadores reagindo à variação de temperatura e umidade. <a href="https://youtube.com/shorts/1XGZHVvOQg8" target="_blank" rel="noopener" style="color:var(--cor-primaria);font-weight:600;">▶ Abrir no YouTube Shorts</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <h3>📋 Quadro de testes</h3>
+        <div class="tabela-testes-wrap">
+          <table class="tabela-testes">
+            <thead>
+              <tr><th>Cenário</th><th>Entrada aproximada</th><th>Estado esperado</th><th>Estado observado</th><th>Resultado</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Estufa em condição ideal</td><td>T = 24 °C · U = 62 %</td><td>LED verde ligado</td><td>Verde aceso; serial: CONDICAO ADEQUADA</td><td class="status-ok">OK</td></tr>
+              <tr><td>Calor excessivo</td><td>T = 36 °C · U = 65 %</td><td>LED vermelho ligado</td><td>Vermelho aceso; serial: TEMPERATURA ALTA</td><td class="status-ok">OK</td></tr>
+              <tr><td>Ar seco</td><td>T = 26 °C · U = 38 %</td><td>LED amarelo ligado</td><td>Amarelo aceso; serial: UMIDADE BAIXA</td><td class="status-ok">OK</td></tr>
+              <tr><td>Alerta duplo</td><td>T = 38 °C · U = 30 %</td><td>Vermelho e amarelo piscando juntos</td><td>Piscar sincronizado a 300 ms; serial: ALERTA DUPLO</td><td class="status-ok">OK</td></tr>
+              <tr><td>Retorno ao normal</td><td>T = 28 °C · U = 55 %</td><td>Somente LED verde</td><td>Verde reacendeu e demais apagaram</td><td class="status-ok">OK</td></tr>
+              <tr><td>Sensor desconectado</td><td>Leitura NaN</td><td>Mensagem de falha no serial</td><td>Serial exibiu "Falha na leitura do DHT22"</td><td class="status-ok">OK</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ CONCLUSÃO ============ -->
+<section class="secao">
+  <div class="container">
+    <div class="secao-titulo"><small>Considerações finais</small><h2>Integração, rastreabilidade e validação</h2></div>
+    <p style="max-width:900px">Os três protótipos compartilham a mesma arquitetura de sensoriamento e controle: leitura periódica das entradas, aplicação de regras de decisão baseadas em limites configuráveis e acionamento das saídas. O registro das leituras e do estado do sistema no Monitor Serial garante a rastreabilidade exigida no ambiente industrial, permitindo comparar o comportamento esperado com o observado a cada teste — exatamente o que os quadros de teste acima documentam.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="ano"></span> Robótica 4.0 — Desafios de sensoriamento e controle com Arduino, prototipados no Tinkercad.</p>
+  </div>
+</footer>
+
+<script>document.getElementById("ano").textContent = new Date().getFullYear();</script>
+<script src="js/script.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/desafios.js"></script>
+</body>
+</html>

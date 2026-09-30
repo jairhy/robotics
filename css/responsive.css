@@ -1,0 +1,39 @@
+/* =========================================================
+   Responsividade — Mobile, Tablet, Notebook, Desktop
+   ========================================================= */
+
+/* Tablet e menor */
+@media (max-width: 960px) {
+  .hero .container { grid-template-columns: 1fr; }
+  .robo-hero-grid { grid-template-columns: 1fr; }
+  .hero { padding: 3.5rem 0 4rem; }
+}
+
+/* Celular */
+@media (max-width: 720px) {
+  .hamburguer { display: grid; }
+
+  .nav-menu {
+    position: fixed; inset: 64px 0 auto 0;
+    background: var(--superficie);
+    flex-direction: column; align-items: flex-start;
+    padding: 1rem 1.25rem; border-bottom: 1px solid var(--borda);
+    gap: .4rem;
+    transform: translateY(-120%); transition: transform 300ms ease;
+    box-shadow: var(--sombra-md);
+  }
+  .nav-menu.aberto { transform: translateY(0); }
+  .nav-menu li { width: 100%; }
+  .nav-menu a { display: block; padding: .8rem 0; width: 100%; }
+
+  .secao { padding: 3rem 0; }
+  .form-contato { padding: 1.25rem; }
+  .footer-grid { text-align: center; }
+}
+
+/* Pequenos */
+@media (max-width: 420px) {
+  .hero-acoes .btn { width: 100%; justify-content: center; }
+  .ferramentas { flex-direction: column; align-items: stretch; }
+  .voltar-topo { bottom: 1rem; right: 1rem; }
+}

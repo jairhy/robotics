@@ -1,0 +1,194 @@
+/* =========================================================
+   desafios.css — Estilos da página "Desafios Arduino"
+   (Iluminação Inteligente, Estacionamento Inteligente,
+   Ambiente Inteligente). Reutiliza as variáveis globais de
+   css/style.css para manter a identidade visual do portal.
+   ========================================================= */
+
+/* ---------------- Hero da página ---------------- */
+.desafios-header { padding: 3.5rem 0 3rem; }
+.desafios-header .badge { margin-bottom: 1rem; }
+
+/* ---------------- Índice / navegação rápida ---------------- */
+.desafios-indice {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem; margin-top: 2rem;
+}
+.indice-card {
+  background: var(--superficie); border: 1px solid var(--borda);
+  border-radius: var(--raio-lg); padding: 1.2rem 1.3rem;
+  box-shadow: var(--sombra-sm); text-decoration: none; color: var(--texto);
+  display: block; transition: transform var(--transicao), box-shadow var(--transicao);
+}
+.indice-card:hover { transform: translateY(-4px); box-shadow: var(--sombra-md); }
+.indice-card .indice-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--primaria); color: #fff; font-weight: 800; font-size: .9rem;
+  margin-bottom: .6rem;
+}
+.indice-card h3 { margin: 0 0 .3rem; font-size: 1.05rem; }
+.indice-card p { margin: 0; font-size: .85rem; color: var(--texto-suave); }
+
+/* ---------------- Cartão de desafio ---------------- */
+.desafio-card {
+  background: var(--superficie); border: 1px solid var(--borda);
+  border-radius: var(--raio-lg); box-shadow: var(--sombra-sm);
+  padding: 1.8rem; margin-bottom: 2.5rem;
+}
+.desafio-cabecalho {
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  border-bottom: 1px solid var(--borda); padding-bottom: 1.1rem; margin-bottom: 1.4rem;
+}
+.desafio-icone {
+  width: 54px; height: 54px; flex: 0 0 54px; border-radius: var(--raio);
+  display: flex; align-items: center; justify-content: center; font-size: 1.7rem;
+  background: rgba(30,111,217,.10);
+}
+.desafio-cabecalho h2 { margin: 0; font-size: 1.4rem; }
+.desafio-cabecalho p { margin: .2rem 0 0; font-size: .88rem; color: var(--texto-suave); }
+
+/* Blocos internos */
+.bloco { margin-bottom: 1.7rem; }
+.bloco > h3 {
+  font-size: 1.02rem; margin: 0 0 .8rem; display: flex; align-items: center; gap: .5rem;
+}
+.bloco > h3::after {
+  content: ""; flex: 1; height: 1px; background: var(--borda);
+}
+
+/* Componentes obrigatórios */
+.componentes-lista { display: flex; flex-wrap: wrap; gap: .5rem; }
+.componente-pill {
+  font-size: .8rem; padding: .35rem .8rem; border-radius: 999px;
+  background: rgba(6,182,212,.12); color: var(--texto);
+  border: 1px solid rgba(6,182,212,.3);
+}
+
+/* Regras de funcionamento */
+.regras-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: .9rem; }
+.regra-item {
+  background: var(--bg); border: 1px solid var(--borda); border-left: 4px solid var(--primaria);
+  border-radius: var(--raio-sm); padding: .85rem 1rem; font-size: .87rem;
+}
+.regra-item strong { display: block; margin-bottom: .2rem; color: var(--texto); }
+.regra-item span { color: var(--texto-suave); }
+.regra-item.led-on   { border-left-color: #22c55e; }
+.regra-item.led-off  { border-left-color: #94a3b8; }
+.regra-item.led-blink{ border-left-color: #f59e0b; }
+.regra-item.led-red  { border-left-color: #ef4444; }
+
+/* Circuito Tinkercad */
+.circuito-wrap {
+  background: var(--superficie); border: 1px solid var(--borda);
+  border-radius: var(--raio); padding: 1rem; box-shadow: var(--sombra-sm);
+  overflow-x: auto;
+}
+.circuito-wrap svg { display: block; width: 100%; height: auto; min-width: 520px; }
+.circuito-legenda {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: .6rem; margin-top: 1rem;
+}
+.legenda-item {
+  font-size: .82rem; color: var(--texto-suave);
+  background: var(--bg); border: 1px solid var(--borda);
+  border-radius: var(--raio-sm); padding: .5rem .7rem;
+}
+.legenda-item b { color: var(--texto); }
+
+.tinkercad-link {
+  display: inline-flex; align-items: center; gap: .45rem; margin-top: 1rem;
+  font-size: .87rem; font-weight: 600;
+}
+
+/* Bloco de código */
+.codigo-caixa { position: relative; }
+.codigo-caixa pre {
+  background: #0b1220; color: #e2e8f0; border-radius: var(--raio);
+  padding: 1.2rem 1.1rem; overflow-x: auto; font-size: .82rem; line-height: 1.55;
+  margin: 0; border: 1px solid #1e293b;
+  font-family: 'Consolas', 'SF Mono', Menlo, monospace;
+}
+.btn-copiar-cod {
+  position: absolute; top: .6rem; right: .6rem;
+  background: var(--primaria); color: #fff; border: none; cursor: pointer;
+  border-radius: var(--raio-sm); padding: .35rem .75rem; font-size: .76rem; font-weight: 600;
+  transition: background var(--transicao);
+}
+.btn-copiar-cod:hover { background: var(--primaria-hover); }
+
+/* Vídeos */
+.videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 360px)); gap: 1.1rem; }
+.video-item {
+  background: var(--bg); border: 1px solid var(--borda);
+  border-radius: var(--raio); overflow: hidden;
+}
+.video-frame {
+  aspect-ratio: 16/9; background: #0b1220; display: flex; align-items: center;
+  justify-content: center; color: #64748b; font-size: .84rem; text-align: center; padding: 1rem;
+}
+.video-frame iframe, .video-frame video { width: 100%; height: 100%; border: 0; display: block; }
+.video-item .video-info { padding: .8rem .9rem 1rem; }
+.video-item .video-info h4 { margin: 0 0 .25rem; font-size: .93rem; }
+.video-item .video-info p { margin: 0; font-size: .82rem; color: var(--texto-suave); }
+
+/* Quadro de testes */
+.tabela-testes-wrap { overflow-x: auto; border: 1px solid var(--borda); border-radius: var(--raio); }
+table.tabela-testes { width: 100%; border-collapse: collapse; font-size: .85rem; min-width: 640px; }
+table.tabela-testes th {
+  background: var(--azul-900); color: #fff; text-align: left; padding: .7rem .85rem;
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .04em;
+}
+table.tabela-testes td { padding: .65rem .85rem; border-top: 1px solid var(--borda); color: var(--texto-suave); }
+table.tabela-testes tbody tr:nth-child(even) { background: var(--bg); }
+table.tabela-testes td:first-child { color: var(--texto); font-weight: 600; }
+
+.status-ok  { color: #16a34a; font-weight: 700; }
+.status-nok { color: #ef4444; font-weight: 700; }
+
+/* Simulador interativo */
+.simulador {
+  background: var(--bg); border: 1px solid var(--borda);
+  border-radius: var(--raio); padding: 1.2rem;
+}
+.sim-controles { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.1rem; }
+.sim-controle label { display: block; font-size: .82rem; font-weight: 600; margin-bottom: .4rem; }
+.sim-controle label span { color: var(--primaria); font-weight: 800; }
+.sim-controle input[type="range"] { width: 100%; accent-color: var(--primaria); }
+.sim-controle select {
+  width: 100%; padding: .45rem .6rem; border-radius: var(--raio-sm);
+  border: 1px solid var(--borda); background: var(--superficie); color: var(--texto);
+  font-size: .85rem;
+}
+.sim-saida {
+  display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+  margin-top: 1.3rem; padding-top: 1.1rem; border-top: 1px solid var(--borda);
+}
+.led {
+  width: 32px; height: 32px; border-radius: 50%; background: #334155;
+  border: 2px solid #1e293b; transition: box-shadow .2s ease, background .2s ease;
+  flex: 0 0 32px;
+}
+.led-grupo { display: flex; align-items: center; gap: .55rem; font-size: .84rem; }
+.led.on-verde    { background: #22c55e; box-shadow: 0 0 16px 4px rgba(34,197,94,.6); }
+.led.on-vermelho { background: #ef4444; box-shadow: 0 0 16px 4px rgba(239,68,68,.6); }
+.led.on-amarelo  { background: #eab308; box-shadow: 0 0 16px 4px rgba(234,179,8,.6); }
+.led.on-branco   { background: #fef9c3; box-shadow: 0 0 18px 5px rgba(254,240,138,.7); }
+.sim-msg { font-size: .87rem; color: var(--texto-suave); }
+.sim-msg strong { color: var(--texto); }
+
+/* Monitor serial simulado */
+.serial-monitor {
+  background: #0b1220; color: #4ade80; border: 1px solid #1e293b;
+  border-radius: var(--raio); padding: .9rem 1rem; font-size: .8rem;
+  font-family: 'Consolas', Menlo, monospace; height: 150px; overflow-y: auto;
+  margin-top: 1.1rem; line-height: 1.6;
+}
+.serial-monitor .serial-titulo { color: #64748b; margin-bottom: .3rem; }
+
+/* Responsivo */
+@media (max-width: 720px) {
+  .desafio-card { padding: 1.2rem; }
+  .desafio-cabecalho h2 { font-size: 1.15rem; }
+  .sim-saida { gap: .8rem; }
+}

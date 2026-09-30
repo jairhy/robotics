@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Quiz — Robótica 4.0</title>
+<link rel="stylesheet" href="css/style.css"/>
+<link rel="stylesheet" href="css/animations.css"/>
+<link rel="stylesheet" href="css/responsive.css"/>
+<link rel="stylesheet" href="css/quiz.css"/>
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="logo"><span class="logo-mark">R4</span> Robótica 4.0</a>
+    <nav>
+      <ul class="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#robos">Robôs</a></li>
+        <li><a href="compare.html">Comparação</a></li>
+        <li><a href="sensores.html">Sensores IoT</a></li>
+        <li><a href="desafios.html">Desafios</a></li>
+        <li><a href="quiz.html" class="ativo">Quiz</a></li>
+        <li><a href="about.html">Sobre</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;gap:.5rem;align-items:center">
+      <button class="icone-btn" id="toggle-tema" title="Alternar tema">🌙</button>
+      <button class="icone-btn hamburguer" aria-label="Menu" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+<main>
+<section class="secao">
+  <div class="container quiz-wrap">
+    <div class="secao-titulo"><small>Modelo ENEM</small><h2>Quiz de Robótica, Sensores e Arduino</h2></div>
+    <div class="q-card" id="quiz-box">
+      <div class="q-top"><span class="q-tag" id="q-cat"></span><span id="q-num"></span></div>
+      <div class="q-prog"><div id="q-bar"></div></div>
+      <p id="q-txt"></p>
+      <img id="q-img" alt="Trecho de código Arduino" hidden/>
+      <div class="q-ops" id="q-ops"></div>
+    </div>
+    <div class="res-card" id="res" hidden>
+      <h3>Sua nota</h3>
+      <div><span id="res-nota"></span><span class="res-nota-de"> / 10</span></div>
+      <p id="res-ac"></p><p id="res-msg"></p>
+      <ul id="res-rev"></ul>
+      <button class="btn btn-primario" id="refazer">Refazer quiz ↺</button>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-footer"><div class="container"><p>© <span id="ano"></span> Robótica 4.0 — Portal Técnico e Educativo</p></div></footer>
+<script>document.getElementById("ano").textContent=new Date().getFullYear();</script>
+<script src="js/script.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/quiz.js"></script>
+</body>
+</html>
